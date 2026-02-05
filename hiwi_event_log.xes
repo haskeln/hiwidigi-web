@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7" xmlns="http://www.xes-standard.org/">
+  <extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+  <extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+  <trace>
+    <string key="concept:name" value="unknown"/>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.779Z"/>
+      <string key="group" value="deterministic"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Xendit"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.820Z"/>
+      <string key="group" value="deterministic"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.820Z"/>
+      <string key="group" value="deterministic"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.863Z"/>
+      <string key="group" value="deterministic"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.905Z"/>
+      <string key="group" value="deterministic"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.905Z"/>
+      <string key="group" value="deterministic"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.948Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.990Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:08.990Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.033Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.075Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.075Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.118Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.160Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.161Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.203Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.245Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.246Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.288Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.330Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.330Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.373Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.415Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.415Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.460Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.502Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.502Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.548Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.589Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.589Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.632Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.672Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.672Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.714Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.756Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.756Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.799Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.840Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.841Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.883Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.925Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.925Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:09.968Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.010Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.010Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.053Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.095Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.095Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.138Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.180Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.180Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.222Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.264Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.264Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.306Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.347Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.348Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.389Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.431Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.431Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.473Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.514Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.514Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.557Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.598Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.598Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.639Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.681Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.681Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.723Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.764Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.764Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.806Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.847Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.848Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.891Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.932Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.933Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:10.978Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.020Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.020Z"/>
+      <string key="group" value="fast"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.244Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.466Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.466Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.690Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.911Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:11.911Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:12.135Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:12.357Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:12.357Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:12.581Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:12.803Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:12.803Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.026Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.248Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.248Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.471Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.693Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.693Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:13.916Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:14.137Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:14.137Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:14.359Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:14.581Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:14.581Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:14.803Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.025Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.025Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.248Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.470Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.470Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.694Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.915Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:15.916Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:16.139Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:16.361Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:16.361Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:16.584Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:16.806Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:16.806Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.028Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.250Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.250Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.475Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.697Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.697Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:17.920Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:18.141Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:18.142Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:18.364Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:18.586Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:18.587Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:18.810Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.031Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.031Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.255Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.477Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.477Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.699Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.921Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:19.921Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:20.143Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:20.365Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:20.365Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:20.589Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:20.810Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:20.810Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="false"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.033Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.254Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.255Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.477Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.698Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.699Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:21.921Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="Stripe"/>
+    </event>
+    <event>
+      <string key="concept:name" value="capability.executed"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:22.143Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+      <string key="provider" value="SendGrid"/>
+    </event>
+    <event>
+      <string key="concept:name" value="orchestrator.end"/>
+      <date key="time:timestamp" value="2026-02-02T12:50:22.143Z"/>
+      <string key="group" value="slow"/>
+      <string key="success" value="true"/>
+    </event>
+  </trace>
+</log>

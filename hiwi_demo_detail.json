@@ -1,0 +1,1065 @@
+{
+  "recipes": [
+    {
+      "intentName": "checkout",
+      "name": "Checkout",
+      "description": "Payment + notification",
+      "requiredVerticals": [
+        "payment",
+        "notification"
+      ],
+      "executionOrder": "sequential"
+    },
+    {
+      "intentName": "fulfillOrder",
+      "name": "Global Fulfillment",
+      "description": "Payment + inventory + compliance + notification + logistics + CRM",
+      "requiredVerticals": [
+        "payment",
+        "inventory",
+        "compliance",
+        "notification",
+        "logistics",
+        "crm"
+      ],
+      "executionOrder": "sequential"
+    }
+  ],
+  "policies": [
+    {
+      "name": "RiskPolicy",
+      "type": "block",
+      "description": "Blocks high-risk orders"
+    },
+    {
+      "name": "SlaPolicy",
+      "type": "reroute",
+      "description": "Reroutes logistics for enterprise SLA"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "stripe_payment",
+      "name": "Stripe Payment",
+      "vertical": "payment",
+      "verbs": [
+        "charge",
+        "refund"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "core.payment_method",
+          "value": "card"
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "Stripe"
+    },
+    {
+      "id": "wallet_payment",
+      "name": "Digital Wallet Payment (Xendit)",
+      "vertical": "payment",
+      "verbs": [
+        "charge",
+        "refund"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "core.payment_method",
+          "value": "wallet"
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "Xendit"
+    },
+    {
+      "id": "email_notification",
+      "name": "Email Notification",
+      "vertical": "notification",
+      "verbs": [
+        "send"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "SendGrid"
+    },
+    {
+      "id": "eu_vat_compliance",
+      "name": "EU VAT Compliance",
+      "vertical": "compliance",
+      "verbs": [
+        "validate",
+        "report"
+      ],
+      "constraints": [
+        {
+          "op": "in",
+          "key": "core.country",
+          "values": [
+            "DE",
+            "FR",
+            "NL",
+            "ES",
+            "IT"
+          ]
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "Avalara"
+    },
+    {
+      "id": "logistics_fedex_pref",
+      "name": "FedEx Priority (Preferred)",
+      "vertical": "logistics",
+      "verbs": [
+        "ship"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "ext.preferred_logistics",
+          "value": "fedex"
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "FedEx"
+    },
+    {
+      "id": "logistics_dhl",
+      "name": "DHL EU",
+      "vertical": "logistics",
+      "verbs": [
+        "ship"
+      ],
+      "constraints": [
+        {
+          "op": "in",
+          "key": "core.country",
+          "values": [
+            "DE",
+            "FR",
+            "NL",
+            "ES",
+            "IT"
+          ]
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "DHL"
+    },
+    {
+      "id": "logistics_fedex",
+      "name": "FedEx US",
+      "vertical": "logistics",
+      "verbs": [
+        "ship"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "core.country",
+          "value": "US"
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "FedEx"
+    },
+    {
+      "id": "logistics_local",
+      "name": "Local Courier",
+      "vertical": "logistics",
+      "verbs": [
+        "ship"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "core.country",
+          "value": "ID"
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "Local"
+    },
+    {
+      "id": "crm_salesforce",
+      "name": "Salesforce Sync",
+      "vertical": "crm",
+      "verbs": [
+        "sync"
+      ],
+      "constraints": [
+        {
+          "op": "eq",
+          "key": "ext.customer_tier",
+          "value": "enterprise"
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "Salesforce"
+    },
+    {
+      "id": "crm_hubspot",
+      "name": "HubSpot Sync",
+      "vertical": "crm",
+      "verbs": [
+        "sync"
+      ],
+      "constraints": [
+        {
+          "op": "in",
+          "key": "ext.customer_tier",
+          "values": [
+            "startup",
+            "mid"
+          ]
+        },
+        {
+          "op": "eq",
+          "key": "core.online_state",
+          "value": "online"
+        }
+      ],
+      "provider": "HubSpot"
+    }
+  ],
+  "decisionTrace": [
+    {
+      "label": "Context A (ID + wallet)",
+      "context": {
+        "core": {
+          "country": "ID",
+          "currency": "IDR",
+          "payment_method": "wallet",
+          "online_state": "online"
+        }
+      },
+      "evaluations": [
+        {
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "provider": "Stripe",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.payment_method",
+              "value": "card"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.payment_method",
+                "value": "card"
+              },
+              "result": false,
+              "reason": "core.payment_method = \"wallet\" != \"card\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "wallet_payment",
+          "vertical": "payment",
+          "provider": "Xendit",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.payment_method",
+              "value": "wallet"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.payment_method",
+                "value": "wallet"
+              },
+              "result": true,
+              "reason": "core.payment_method = \"wallet\" == \"wallet\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "provider": "SendGrid",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "eu_vat_compliance",
+          "vertical": "compliance",
+          "provider": "Avalara",
+          "constraints": [
+            {
+              "op": "in",
+              "key": "core.country",
+              "values": [
+                "DE",
+                "FR",
+                "NL",
+                "ES",
+                "IT"
+              ]
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "in",
+                "key": "core.country",
+                "values": [
+                  "DE",
+                  "FR",
+                  "NL",
+                  "ES",
+                  "IT"
+                ]
+              },
+              "result": false,
+              "reason": "core.country = \"ID\" not in [\"DE\",\"FR\",\"NL\",\"ES\",\"IT\"]"
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_fedex_pref",
+          "vertical": "logistics",
+          "provider": "FedEx",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "ext.preferred_logistics",
+              "value": "fedex"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "ext.preferred_logistics",
+                "value": "fedex"
+              },
+              "result": false,
+              "reason": "ext.preferred_logistics = undefined != \"fedex\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_dhl",
+          "vertical": "logistics",
+          "provider": "DHL",
+          "constraints": [
+            {
+              "op": "in",
+              "key": "core.country",
+              "values": [
+                "DE",
+                "FR",
+                "NL",
+                "ES",
+                "IT"
+              ]
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "in",
+                "key": "core.country",
+                "values": [
+                  "DE",
+                  "FR",
+                  "NL",
+                  "ES",
+                  "IT"
+                ]
+              },
+              "result": false,
+              "reason": "core.country = \"ID\" not in [\"DE\",\"FR\",\"NL\",\"ES\",\"IT\"]"
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_fedex",
+          "vertical": "logistics",
+          "provider": "FedEx",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.country",
+              "value": "US"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.country",
+                "value": "US"
+              },
+              "result": false,
+              "reason": "core.country = \"ID\" != \"US\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_local",
+          "vertical": "logistics",
+          "provider": "Local",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.country",
+              "value": "ID"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.country",
+                "value": "ID"
+              },
+              "result": true,
+              "reason": "core.country = \"ID\" == \"ID\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "crm_salesforce",
+          "vertical": "crm",
+          "provider": "Salesforce",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "ext.customer_tier",
+              "value": "enterprise"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "ext.customer_tier",
+                "value": "enterprise"
+              },
+              "result": false,
+              "reason": "ext.customer_tier = undefined != \"enterprise\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "crm_hubspot",
+          "vertical": "crm",
+          "provider": "HubSpot",
+          "constraints": [
+            {
+              "op": "in",
+              "key": "ext.customer_tier",
+              "values": [
+                "startup",
+                "mid"
+              ]
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "in",
+                "key": "ext.customer_tier",
+                "values": [
+                  "startup",
+                  "mid"
+                ]
+              },
+              "result": false,
+              "reason": "ext.customer_tier = undefined not in [\"startup\",\"mid\"]"
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Context B (US + card)",
+      "context": {
+        "core": {
+          "country": "US",
+          "currency": "USD",
+          "payment_method": "card",
+          "online_state": "online"
+        }
+      },
+      "evaluations": [
+        {
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "provider": "Stripe",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.payment_method",
+              "value": "card"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.payment_method",
+                "value": "card"
+              },
+              "result": true,
+              "reason": "core.payment_method = \"card\" == \"card\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "wallet_payment",
+          "vertical": "payment",
+          "provider": "Xendit",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.payment_method",
+              "value": "wallet"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.payment_method",
+                "value": "wallet"
+              },
+              "result": false,
+              "reason": "core.payment_method = \"card\" != \"wallet\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "provider": "SendGrid",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "eu_vat_compliance",
+          "vertical": "compliance",
+          "provider": "Avalara",
+          "constraints": [
+            {
+              "op": "in",
+              "key": "core.country",
+              "values": [
+                "DE",
+                "FR",
+                "NL",
+                "ES",
+                "IT"
+              ]
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "in",
+                "key": "core.country",
+                "values": [
+                  "DE",
+                  "FR",
+                  "NL",
+                  "ES",
+                  "IT"
+                ]
+              },
+              "result": false,
+              "reason": "core.country = \"US\" not in [\"DE\",\"FR\",\"NL\",\"ES\",\"IT\"]"
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_fedex_pref",
+          "vertical": "logistics",
+          "provider": "FedEx",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "ext.preferred_logistics",
+              "value": "fedex"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "ext.preferred_logistics",
+                "value": "fedex"
+              },
+              "result": false,
+              "reason": "ext.preferred_logistics = undefined != \"fedex\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_dhl",
+          "vertical": "logistics",
+          "provider": "DHL",
+          "constraints": [
+            {
+              "op": "in",
+              "key": "core.country",
+              "values": [
+                "DE",
+                "FR",
+                "NL",
+                "ES",
+                "IT"
+              ]
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "in",
+                "key": "core.country",
+                "values": [
+                  "DE",
+                  "FR",
+                  "NL",
+                  "ES",
+                  "IT"
+                ]
+              },
+              "result": false,
+              "reason": "core.country = \"US\" not in [\"DE\",\"FR\",\"NL\",\"ES\",\"IT\"]"
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_fedex",
+          "vertical": "logistics",
+          "provider": "FedEx",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.country",
+              "value": "US"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.country",
+                "value": "US"
+              },
+              "result": true,
+              "reason": "core.country = \"US\" == \"US\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "logistics_local",
+          "vertical": "logistics",
+          "provider": "Local",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "core.country",
+              "value": "ID"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.country",
+                "value": "ID"
+              },
+              "result": false,
+              "reason": "core.country = \"US\" != \"ID\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "crm_salesforce",
+          "vertical": "crm",
+          "provider": "Salesforce",
+          "constraints": [
+            {
+              "op": "eq",
+              "key": "ext.customer_tier",
+              "value": "enterprise"
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "ext.customer_tier",
+                "value": "enterprise"
+              },
+              "result": false,
+              "reason": "ext.customer_tier = undefined != \"enterprise\""
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        },
+        {
+          "capabilityId": "crm_hubspot",
+          "vertical": "crm",
+          "provider": "HubSpot",
+          "constraints": [
+            {
+              "op": "in",
+              "key": "ext.customer_tier",
+              "values": [
+                "startup",
+                "mid"
+              ]
+            },
+            {
+              "op": "eq",
+              "key": "core.online_state",
+              "value": "online"
+            }
+          ],
+          "results": [
+            {
+              "predicate": {
+                "op": "in",
+                "key": "ext.customer_tier",
+                "values": [
+                  "startup",
+                  "mid"
+                ]
+              },
+              "result": false,
+              "reason": "ext.customer_tier = undefined not in [\"startup\",\"mid\"]"
+            },
+            {
+              "predicate": {
+                "op": "eq",
+                "key": "core.online_state",
+                "value": "online"
+              },
+              "result": true,
+              "reason": "core.online_state = \"online\" == \"online\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2478 @@
+{
+  "deterministic": [
+    {
+      "id": "deterministic_0",
+      "timestamp": "2026-02-02T20:10:12.953Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "wallet_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:12.953Z",
+          "provider": "Xendit"
+        }
+      }
+    },
+    {
+      "id": "deterministic_1",
+      "timestamp": "2026-02-02T20:10:12.994Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:12.994Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "deterministic_2",
+      "timestamp": "2026-02-02T20:10:12.994Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:12.994Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "deterministic_3",
+      "timestamp": "2026-02-02T20:10:13.037Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.037Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "deterministic_4",
+      "timestamp": "2026-02-02T20:10:13.079Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:13.079Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "deterministic_5",
+      "timestamp": "2026-02-02T20:10:13.079Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:13.079Z",
+          "failedVerticals": []
+        }
+      }
+    }
+  ],
+  "fast": [
+    {
+      "id": "fast_0",
+      "timestamp": "2026-02-02T20:10:13.122Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.122Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_1",
+      "timestamp": "2026-02-02T20:10:13.163Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.163Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_2",
+      "timestamp": "2026-02-02T20:10:13.164Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:13.164Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_3",
+      "timestamp": "2026-02-02T20:10:13.206Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.206Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_4",
+      "timestamp": "2026-02-02T20:10:13.248Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.248Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_5",
+      "timestamp": "2026-02-02T20:10:13.248Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:13.248Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_6",
+      "timestamp": "2026-02-02T20:10:13.291Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.291Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_7",
+      "timestamp": "2026-02-02T20:10:13.332Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.332Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_8",
+      "timestamp": "2026-02-02T20:10:13.332Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 83,
+          "timestamp": "2026-02-02T20:10:13.332Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_9",
+      "timestamp": "2026-02-02T20:10:13.374Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.374Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_10",
+      "timestamp": "2026-02-02T20:10:13.416Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.416Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_11",
+      "timestamp": "2026-02-02T20:10:13.417Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:13.417Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_12",
+      "timestamp": "2026-02-02T20:10:13.459Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.459Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_13",
+      "timestamp": "2026-02-02T20:10:13.501Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.501Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_14",
+      "timestamp": "2026-02-02T20:10:13.502Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:13.502Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_15",
+      "timestamp": "2026-02-02T20:10:13.545Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:13.545Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_16",
+      "timestamp": "2026-02-02T20:10:13.586Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.586Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_17",
+      "timestamp": "2026-02-02T20:10:13.587Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:13.587Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_18",
+      "timestamp": "2026-02-02T20:10:13.629Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.629Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_19",
+      "timestamp": "2026-02-02T20:10:13.671Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.671Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_20",
+      "timestamp": "2026-02-02T20:10:13.672Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:13.672Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_21",
+      "timestamp": "2026-02-02T20:10:13.714Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:13.714Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_22",
+      "timestamp": "2026-02-02T20:10:13.756Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:13.756Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_23",
+      "timestamp": "2026-02-02T20:10:13.756Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:13.756Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_24",
+      "timestamp": "2026-02-02T20:10:13.799Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.799Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_25",
+      "timestamp": "2026-02-02T20:10:13.841Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.841Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_26",
+      "timestamp": "2026-02-02T20:10:13.841Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:13.841Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_27",
+      "timestamp": "2026-02-02T20:10:13.884Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:13.884Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_28",
+      "timestamp": "2026-02-02T20:10:13.925Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.925Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_29",
+      "timestamp": "2026-02-02T20:10:13.926Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:13.926Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_30",
+      "timestamp": "2026-02-02T20:10:13.968Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:13.968Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_31",
+      "timestamp": "2026-02-02T20:10:14.010Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.010Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_32",
+      "timestamp": "2026-02-02T20:10:14.010Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:14.010Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_33",
+      "timestamp": "2026-02-02T20:10:14.053Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.053Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_34",
+      "timestamp": "2026-02-02T20:10:14.095Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.095Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_35",
+      "timestamp": "2026-02-02T20:10:14.095Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:14.095Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_36",
+      "timestamp": "2026-02-02T20:10:14.138Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.138Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_37",
+      "timestamp": "2026-02-02T20:10:14.180Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:14.180Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_38",
+      "timestamp": "2026-02-02T20:10:14.180Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:14.180Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_39",
+      "timestamp": "2026-02-02T20:10:14.223Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.223Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_40",
+      "timestamp": "2026-02-02T20:10:14.265Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.265Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_41",
+      "timestamp": "2026-02-02T20:10:14.265Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:14.265Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_42",
+      "timestamp": "2026-02-02T20:10:14.307Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.307Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_43",
+      "timestamp": "2026-02-02T20:10:14.348Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.348Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_44",
+      "timestamp": "2026-02-02T20:10:14.348Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 83,
+          "timestamp": "2026-02-02T20:10:14.348Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_45",
+      "timestamp": "2026-02-02T20:10:14.391Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.391Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_46",
+      "timestamp": "2026-02-02T20:10:14.432Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.432Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_47",
+      "timestamp": "2026-02-02T20:10:14.432Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 83,
+          "timestamp": "2026-02-02T20:10:14.432Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_48",
+      "timestamp": "2026-02-02T20:10:14.474Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.474Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_49",
+      "timestamp": "2026-02-02T20:10:14.515Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.515Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_50",
+      "timestamp": "2026-02-02T20:10:14.515Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 82,
+          "timestamp": "2026-02-02T20:10:14.515Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_51",
+      "timestamp": "2026-02-02T20:10:14.557Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.557Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_52",
+      "timestamp": "2026-02-02T20:10:14.598Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.598Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_53",
+      "timestamp": "2026-02-02T20:10:14.598Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 83,
+          "timestamp": "2026-02-02T20:10:14.598Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_54",
+      "timestamp": "2026-02-02T20:10:14.641Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:14.641Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_55",
+      "timestamp": "2026-02-02T20:10:14.682Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.682Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_56",
+      "timestamp": "2026-02-02T20:10:14.682Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 83,
+          "timestamp": "2026-02-02T20:10:14.682Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_57",
+      "timestamp": "2026-02-02T20:10:14.724Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 40,
+          "timestamp": "2026-02-02T20:10:14.724Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_58",
+      "timestamp": "2026-02-02T20:10:14.766Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.766Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_59",
+      "timestamp": "2026-02-02T20:10:14.766Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 83,
+          "timestamp": "2026-02-02T20:10:14.766Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_60",
+      "timestamp": "2026-02-02T20:10:14.807Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 40,
+          "timestamp": "2026-02-02T20:10:14.807Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_61",
+      "timestamp": "2026-02-02T20:10:14.848Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.848Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_62",
+      "timestamp": "2026-02-02T20:10:14.848Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 82,
+          "timestamp": "2026-02-02T20:10:14.848Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_63",
+      "timestamp": "2026-02-02T20:10:14.891Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:14.891Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_64",
+      "timestamp": "2026-02-02T20:10:14.933Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:14.933Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_65",
+      "timestamp": "2026-02-02T20:10:14.933Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:14.933Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_66",
+      "timestamp": "2026-02-02T20:10:14.976Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 42,
+          "timestamp": "2026-02-02T20:10:14.976Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_67",
+      "timestamp": "2026-02-02T20:10:15.017Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:15.017Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_68",
+      "timestamp": "2026-02-02T20:10:15.017Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:15.017Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_69",
+      "timestamp": "2026-02-02T20:10:15.060Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:15.060Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_70",
+      "timestamp": "2026-02-02T20:10:15.102Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:15.102Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_71",
+      "timestamp": "2026-02-02T20:10:15.102Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 84,
+          "timestamp": "2026-02-02T20:10:15.102Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "fast_72",
+      "timestamp": "2026-02-02T20:10:15.145Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:15.145Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "fast_73",
+      "timestamp": "2026-02-02T20:10:15.187Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 41,
+          "timestamp": "2026-02-02T20:10:15.187Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "fast_74",
+      "timestamp": "2026-02-02T20:10:15.187Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 85,
+          "timestamp": "2026-02-02T20:10:15.187Z",
+          "failedVerticals": []
+        }
+      }
+    }
+  ],
+  "slow": [
+    {
+      "id": "slow_0",
+      "timestamp": "2026-02-02T20:10:15.410Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": false,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:15.410Z",
+          "error": "Stripe payment failed: Simulated failure for testing",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_1",
+      "timestamp": "2026-02-02T20:10:15.632Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": false,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:15.632Z",
+          "error": "Email send failed: Simulated failure for testing",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_2",
+      "timestamp": "2026-02-02T20:10:15.632Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:15.632Z",
+          "failedVerticals": [
+            "payment",
+            "notification"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_3",
+      "timestamp": "2026-02-02T20:10:15.855Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:15.855Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_4",
+      "timestamp": "2026-02-02T20:10:16.077Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:16.077Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_5",
+      "timestamp": "2026-02-02T20:10:16.077Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:16.077Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_6",
+      "timestamp": "2026-02-02T20:10:16.301Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:16.301Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_7",
+      "timestamp": "2026-02-02T20:10:16.523Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": false,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:16.523Z",
+          "error": "Email send failed: Simulated failure for testing",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_8",
+      "timestamp": "2026-02-02T20:10:16.523Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:16.523Z",
+          "failedVerticals": [
+            "notification"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_9",
+      "timestamp": "2026-02-02T20:10:16.746Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:16.746Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_10",
+      "timestamp": "2026-02-02T20:10:16.968Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:16.968Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_11",
+      "timestamp": "2026-02-02T20:10:16.968Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:16.968Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_12",
+      "timestamp": "2026-02-02T20:10:17.191Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:17.191Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_13",
+      "timestamp": "2026-02-02T20:10:17.412Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:17.412Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_14",
+      "timestamp": "2026-02-02T20:10:17.413Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:17.413Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_15",
+      "timestamp": "2026-02-02T20:10:17.636Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": false,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:17.636Z",
+          "error": "Stripe payment failed: Simulated failure for testing",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_16",
+      "timestamp": "2026-02-02T20:10:17.857Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:17.857Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_17",
+      "timestamp": "2026-02-02T20:10:17.858Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:17.858Z",
+          "failedVerticals": [
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_18",
+      "timestamp": "2026-02-02T20:10:18.081Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:18.081Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_19",
+      "timestamp": "2026-02-02T20:10:18.303Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": false,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:18.303Z",
+          "error": "Email send failed: Simulated failure for testing",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_20",
+      "timestamp": "2026-02-02T20:10:18.303Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:18.303Z",
+          "failedVerticals": [
+            "notification"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_21",
+      "timestamp": "2026-02-02T20:10:18.526Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:18.526Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_22",
+      "timestamp": "2026-02-02T20:10:18.747Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:18.747Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_23",
+      "timestamp": "2026-02-02T20:10:18.748Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:18.748Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_24",
+      "timestamp": "2026-02-02T20:10:18.970Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:18.970Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_25",
+      "timestamp": "2026-02-02T20:10:19.191Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:19.191Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_26",
+      "timestamp": "2026-02-02T20:10:19.192Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:19.192Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_27",
+      "timestamp": "2026-02-02T20:10:19.415Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": false,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:19.415Z",
+          "error": "Stripe payment failed: Simulated failure for testing",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_28",
+      "timestamp": "2026-02-02T20:10:19.637Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:19.637Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_29",
+      "timestamp": "2026-02-02T20:10:19.638Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 446,
+          "timestamp": "2026-02-02T20:10:19.638Z",
+          "failedVerticals": [
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_30",
+      "timestamp": "2026-02-02T20:10:19.860Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:19.860Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_31",
+      "timestamp": "2026-02-02T20:10:20.082Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": false,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:20.082Z",
+          "error": "Email send failed: Simulated failure for testing",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_32",
+      "timestamp": "2026-02-02T20:10:20.082Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:20.082Z",
+          "failedVerticals": [
+            "notification"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_33",
+      "timestamp": "2026-02-02T20:10:20.305Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:20.305Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_34",
+      "timestamp": "2026-02-02T20:10:20.526Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:20.526Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_35",
+      "timestamp": "2026-02-02T20:10:20.527Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:20.527Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_36",
+      "timestamp": "2026-02-02T20:10:20.751Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:20.751Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_37",
+      "timestamp": "2026-02-02T20:10:20.972Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:20.972Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_38",
+      "timestamp": "2026-02-02T20:10:20.973Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:20.973Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_39",
+      "timestamp": "2026-02-02T20:10:21.196Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:21.196Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_40",
+      "timestamp": "2026-02-02T20:10:21.417Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:21.417Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_41",
+      "timestamp": "2026-02-02T20:10:21.418Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:21.418Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_42",
+      "timestamp": "2026-02-02T20:10:21.640Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:21.640Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_43",
+      "timestamp": "2026-02-02T20:10:21.862Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:21.862Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_44",
+      "timestamp": "2026-02-02T20:10:21.862Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:21.862Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_45",
+      "timestamp": "2026-02-02T20:10:22.086Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:22.086Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_46",
+      "timestamp": "2026-02-02T20:10:22.308Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:22.308Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_47",
+      "timestamp": "2026-02-02T20:10:22.308Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:22.308Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_48",
+      "timestamp": "2026-02-02T20:10:22.531Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:22.531Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_49",
+      "timestamp": "2026-02-02T20:10:22.752Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": false,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:22.752Z",
+          "error": "Email send failed: Simulated failure for testing",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_50",
+      "timestamp": "2026-02-02T20:10:22.753Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:22.753Z",
+          "failedVerticals": [
+            "notification"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_51",
+      "timestamp": "2026-02-02T20:10:22.975Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:22.975Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_52",
+      "timestamp": "2026-02-02T20:10:23.197Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:23.197Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_53",
+      "timestamp": "2026-02-02T20:10:23.197Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:23.197Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_54",
+      "timestamp": "2026-02-02T20:10:23.421Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:23.421Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_55",
+      "timestamp": "2026-02-02T20:10:23.642Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:23.642Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_56",
+      "timestamp": "2026-02-02T20:10:23.643Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:23.643Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_57",
+      "timestamp": "2026-02-02T20:10:23.866Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:23.866Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_58",
+      "timestamp": "2026-02-02T20:10:24.088Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:24.088Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_59",
+      "timestamp": "2026-02-02T20:10:24.088Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:24.088Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_60",
+      "timestamp": "2026-02-02T20:10:24.310Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 220,
+          "timestamp": "2026-02-02T20:10:24.310Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_61",
+      "timestamp": "2026-02-02T20:10:24.532Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:24.532Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_62",
+      "timestamp": "2026-02-02T20:10:24.533Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:24.533Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_63",
+      "timestamp": "2026-02-02T20:10:24.756Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": false,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:24.756Z",
+          "error": "Stripe payment failed: Simulated failure for testing",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_64",
+      "timestamp": "2026-02-02T20:10:24.977Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:24.977Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_65",
+      "timestamp": "2026-02-02T20:10:24.978Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": false,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:24.978Z",
+          "failedVerticals": [
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "slow_66",
+      "timestamp": "2026-02-02T20:10:25.202Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 222,
+          "timestamp": "2026-02-02T20:10:25.202Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_67",
+      "timestamp": "2026-02-02T20:10:25.423Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:25.423Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_68",
+      "timestamp": "2026-02-02T20:10:25.424Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 445,
+          "timestamp": "2026-02-02T20:10:25.424Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_69",
+      "timestamp": "2026-02-02T20:10:25.647Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:25.647Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_70",
+      "timestamp": "2026-02-02T20:10:25.869Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:25.869Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_71",
+      "timestamp": "2026-02-02T20:10:25.869Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 444,
+          "timestamp": "2026-02-02T20:10:25.869Z",
+          "failedVerticals": []
+        }
+      }
+    },
+    {
+      "id": "slow_72",
+      "timestamp": "2026-02-02T20:10:26.092Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "stripe_payment",
+          "vertical": "payment",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:26.092Z",
+          "provider": "Stripe"
+        }
+      }
+    },
+    {
+      "id": "slow_73",
+      "timestamp": "2026-02-02T20:10:26.313Z",
+      "event": {
+        "type": "capability.executed",
+        "data": {
+          "type": "capability.executed",
+          "capabilityId": "email_notification",
+          "vertical": "notification",
+          "success": true,
+          "durationMs": 221,
+          "timestamp": "2026-02-02T20:10:26.313Z",
+          "provider": "SendGrid"
+        }
+      }
+    },
+    {
+      "id": "slow_74",
+      "timestamp": "2026-02-02T20:10:26.313Z",
+      "event": {
+        "type": "orchestrator.end",
+        "data": {
+          "type": "orchestrator.end",
+          "intentName": "checkout",
+          "success": true,
+          "durationMs": 443,
+          "timestamp": "2026-02-02T20:10:26.313Z",
+          "failedVerticals": []
+        }
+      }
+    }
+  ]
+}

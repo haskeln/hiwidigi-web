@@ -1,0 +1,17 @@
+{
+  "name": "@hiwios/demo",
+  "version": "0.1.0",
+  "description": "Demo scenarios for HiwiOS capability orchestration",
+  "main": "checkout-demo.ts",
+  "scripts": {
+    "demo": "tsx checkout-demo.ts"
+  },
+  "dependencies": {
+    "@hiwios/runtime": "workspace:*",
+    "@hiwios/contracts": "workspace:*",
+    "@hiwios/core": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0"
+  }
+}

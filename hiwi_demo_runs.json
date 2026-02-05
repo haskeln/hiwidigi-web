@@ -1,0 +1,522 @@
+[
+  {
+    "label": "Context A (ID + wallet)",
+    "provider": "deterministic",
+    "success": true,
+    "capabilities": {
+      "payment": "wallet_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:12.995Z"
+  },
+  {
+    "label": "Context B (US + card)",
+    "provider": "deterministic",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.079Z"
+  },
+  {
+    "label": "Fast #1",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.164Z"
+  },
+  {
+    "label": "Fast #2",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.249Z"
+  },
+  {
+    "label": "Fast #3",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.332Z"
+  },
+  {
+    "label": "Fast #4",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.417Z"
+  },
+  {
+    "label": "Fast #5",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.502Z"
+  },
+  {
+    "label": "Fast #6",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.587Z"
+  },
+  {
+    "label": "Fast #7",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.672Z"
+  },
+  {
+    "label": "Fast #8",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.756Z"
+  },
+  {
+    "label": "Fast #9",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.842Z"
+  },
+  {
+    "label": "Fast #10",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:13.926Z"
+  },
+  {
+    "label": "Fast #11",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.011Z"
+  },
+  {
+    "label": "Fast #12",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.096Z"
+  },
+  {
+    "label": "Fast #13",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.181Z"
+  },
+  {
+    "label": "Fast #14",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.265Z"
+  },
+  {
+    "label": "Fast #15",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.349Z"
+  },
+  {
+    "label": "Fast #16",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.433Z"
+  },
+  {
+    "label": "Fast #17",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.515Z"
+  },
+  {
+    "label": "Fast #18",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.599Z"
+  },
+  {
+    "label": "Fast #19",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.683Z"
+  },
+  {
+    "label": "Fast #20",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.766Z"
+  },
+  {
+    "label": "Fast #21",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.848Z"
+  },
+  {
+    "label": "Fast #22",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:14.933Z"
+  },
+  {
+    "label": "Fast #23",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:15.018Z"
+  },
+  {
+    "label": "Fast #24",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:15.102Z"
+  },
+  {
+    "label": "Fast #25",
+    "provider": "fast",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:15.187Z"
+  },
+  {
+    "label": "Slow #1",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:15.633Z"
+  },
+  {
+    "label": "Slow #2",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:16.078Z"
+  },
+  {
+    "label": "Slow #3",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:16.524Z"
+  },
+  {
+    "label": "Slow #4",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:16.969Z"
+  },
+  {
+    "label": "Slow #5",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:17.413Z"
+  },
+  {
+    "label": "Slow #6",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:17.859Z"
+  },
+  {
+    "label": "Slow #7",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:18.304Z"
+  },
+  {
+    "label": "Slow #8",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:18.748Z"
+  },
+  {
+    "label": "Slow #9",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:19.192Z"
+  },
+  {
+    "label": "Slow #10",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:19.638Z"
+  },
+  {
+    "label": "Slow #11",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:20.083Z"
+  },
+  {
+    "label": "Slow #12",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:20.528Z"
+  },
+  {
+    "label": "Slow #13",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:20.973Z"
+  },
+  {
+    "label": "Slow #14",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:21.418Z"
+  },
+  {
+    "label": "Slow #15",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:21.863Z"
+  },
+  {
+    "label": "Slow #16",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:22.309Z"
+  },
+  {
+    "label": "Slow #17",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:22.753Z"
+  },
+  {
+    "label": "Slow #18",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:23.198Z"
+  },
+  {
+    "label": "Slow #19",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:23.643Z"
+  },
+  {
+    "label": "Slow #20",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:24.089Z"
+  },
+  {
+    "label": "Slow #21",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:24.533Z"
+  },
+  {
+    "label": "Slow #22",
+    "provider": "slow",
+    "success": false,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:24.978Z"
+  },
+  {
+    "label": "Slow #23",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:25.425Z"
+  },
+  {
+    "label": "Slow #24",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:25.870Z"
+  },
+  {
+    "label": "Slow #25",
+    "provider": "slow",
+    "success": true,
+    "capabilities": {
+      "payment": "stripe_payment",
+      "notification": "email_notification"
+    },
+    "timestamp": "2026-02-02T20:10:26.314Z"
+  }
+]

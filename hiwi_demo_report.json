@@ -1,0 +1,86 @@
+{
+  "deterministicProvider": {
+    "kpis": {
+      "intent": {},
+      "capability": {
+        "payment:wallet_payment": {
+          "count": 1,
+          "success": 1,
+          "failure": 0,
+          "avgDurationMs": 42
+        },
+        "notification:email_notification": {
+          "count": 2,
+          "success": 2,
+          "failure": 0,
+          "avgDurationMs": 41.5
+        },
+        "payment:stripe_payment": {
+          "count": 1,
+          "success": 1,
+          "failure": 0,
+          "avgDurationMs": 41
+        }
+      },
+      "orchestrator": {
+        "count": 2,
+        "success": 2,
+        "failure": 0,
+        "avgDurationMs": 84.5
+      }
+    },
+    "totalCost": 0.051
+  },
+  "fastProvider": {
+    "kpis": {
+      "intent": {},
+      "capability": {
+        "payment:stripe_payment": {
+          "count": 25,
+          "success": 25,
+          "failure": 0,
+          "avgDurationMs": 41.12
+        },
+        "notification:email_notification": {
+          "count": 25,
+          "success": 25,
+          "failure": 0,
+          "avgDurationMs": 41.11999999999999
+        }
+      },
+      "orchestrator": {
+        "count": 25,
+        "success": 25,
+        "failure": 0,
+        "avgDurationMs": 83.83999999999997
+      }
+    },
+    "totalCost": 0.925
+  },
+  "slowProvider": {
+    "kpis": {
+      "intent": {},
+      "capability": {
+        "payment:stripe_payment": {
+          "count": 25,
+          "success": 21,
+          "failure": 4,
+          "avgDurationMs": 221.28
+        },
+        "notification:email_notification": {
+          "count": 25,
+          "success": 20,
+          "failure": 5,
+          "avgDurationMs": 221.24
+        }
+      },
+      "orchestrator": {
+        "count": 25,
+        "success": 17,
+        "failure": 8,
+        "avgDurationMs": 444.32
+      }
+    },
+    "totalCost": 0.925
+  }
+}

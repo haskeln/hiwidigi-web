@@ -1,0 +1,793 @@
+{
+  "nodes": [
+    {
+      "id": "intent.fulfillOrder",
+      "label": "fulfillOrder",
+      "x": 40,
+      "y": 80,
+      "group": "intent",
+      "info": "Intent: Global Fulfillment (6 verticals)"
+    },
+    {
+      "id": "policy.risk",
+      "label": "RiskPolicy",
+      "x": 260,
+      "y": 20,
+      "group": "policy",
+      "info": "Blocks high-risk orders"
+    },
+    {
+      "id": "policy.sla",
+      "label": "SlaPolicy",
+      "x": 260,
+      "y": 120,
+      "group": "policy",
+      "info": "Enterprise SLA reroutes logistics"
+    },
+    {
+      "id": "vertical.payment",
+      "label": "payment",
+      "x": 520,
+      "y": 20,
+      "group": "vertical",
+      "info": "Select best payment provider"
+    },
+    {
+      "id": "vertical.inventory",
+      "label": "inventory",
+      "x": 520,
+      "y": 110,
+      "group": "vertical",
+      "info": "Inventory reservation"
+    },
+    {
+      "id": "vertical.compliance",
+      "label": "compliance",
+      "x": 520,
+      "y": 200,
+      "group": "vertical",
+      "info": "Tax/VAT checks"
+    },
+    {
+      "id": "vertical.notification",
+      "label": "notification",
+      "x": 520,
+      "y": 290,
+      "group": "vertical",
+      "info": "Customer notifications"
+    },
+    {
+      "id": "vertical.logistics",
+      "label": "logistics",
+      "x": 520,
+      "y": 380,
+      "group": "vertical",
+      "info": "Shipment provider"
+    },
+    {
+      "id": "vertical.crm",
+      "label": "crm",
+      "x": 520,
+      "y": 470,
+      "group": "vertical",
+      "info": "CRM sync"
+    },
+    {
+      "id": "vertical.datastore",
+      "label": "datastore",
+      "x": 520,
+      "y": 560,
+      "group": "vertical",
+      "info": "Primary data store"
+    },
+    {
+      "id": "cap.stripe",
+      "label": "stripe_payment",
+      "x": 760,
+      "y": 20,
+      "group": "capability",
+      "info": "Stripe • card payments"
+    },
+    {
+      "id": "cap.wallet",
+      "label": "wallet_payment",
+      "x": 760,
+      "y": 110,
+      "group": "capability",
+      "info": "Xendit • wallet payments"
+    },
+    {
+      "id": "cap.vat",
+      "label": "eu_vat_compliance",
+      "x": 760,
+      "y": 200,
+      "group": "capability",
+      "info": "Avalara • EU VAT"
+    },
+    {
+      "id": "cap.ppn",
+      "label": "indonesian_ppn",
+      "x": 760,
+      "y": 290,
+      "group": "capability",
+      "info": "ID PPN compliance"
+    },
+    {
+      "id": "cap.email",
+      "label": "email_notification",
+      "x": 760,
+      "y": 380,
+      "group": "capability",
+      "info": "SendGrid • email"
+    },
+    {
+      "id": "cap.fedex",
+      "label": "logistics_fedex_pref",
+      "x": 760,
+      "y": 470,
+      "group": "capability",
+      "info": "FedEx • priority"
+    },
+    {
+      "id": "cap.local",
+      "label": "logistics_local",
+      "x": 760,
+      "y": 560,
+      "group": "capability",
+      "info": "Local courier • same-day"
+    },
+    {
+      "id": "cap.crm.sf",
+      "label": "crm_salesforce",
+      "x": 760,
+      "y": 650,
+      "group": "capability",
+      "info": "Salesforce • enterprise"
+    },
+    {
+      "id": "cap.crm.hs",
+      "label": "crm_hubspot",
+      "x": 760,
+      "y": 740,
+      "group": "capability",
+      "info": "HubSpot • mid/startup"
+    },
+    {
+      "id": "cap.db.firestore",
+      "label": "datastore_firestore",
+      "x": 760,
+      "y": 830,
+      "group": "capability",
+      "info": "Firestore • default"
+    },
+    {
+      "id": "cap.db.postgres",
+      "label": "datastore_postgres",
+      "x": 760,
+      "y": 920,
+      "group": "capability",
+      "info": "Postgres • enterprise"
+    },
+    {
+      "id": "outcome.success",
+      "label": "success",
+      "x": 980,
+      "y": 380,
+      "group": "outcome",
+      "info": "Order fulfilled"
+    },
+    {
+      "id": "outcome.block",
+      "label": "blocked",
+      "x": 980,
+      "y": 20,
+      "group": "outcome",
+      "info": "Order blocked (risk)"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e.intent.risk",
+      "from": "intent.fulfillOrder",
+      "to": "policy.risk"
+    },
+    {
+      "id": "e.intent.sla",
+      "from": "intent.fulfillOrder",
+      "to": "policy.sla"
+    },
+    {
+      "id": "e.sla.payment",
+      "from": "policy.sla",
+      "to": "vertical.payment"
+    },
+    {
+      "id": "e.sla.inventory",
+      "from": "policy.sla",
+      "to": "vertical.inventory"
+    },
+    {
+      "id": "e.sla.compliance",
+      "from": "policy.sla",
+      "to": "vertical.compliance"
+    },
+    {
+      "id": "e.sla.notification",
+      "from": "policy.sla",
+      "to": "vertical.notification"
+    },
+    {
+      "id": "e.sla.logistics",
+      "from": "policy.sla",
+      "to": "vertical.logistics"
+    },
+    {
+      "id": "e.sla.crm",
+      "from": "policy.sla",
+      "to": "vertical.crm"
+    },
+    {
+      "id": "e.sla.datastore",
+      "from": "policy.sla",
+      "to": "vertical.datastore"
+    },
+    {
+      "id": "e.payment.stripe",
+      "from": "vertical.payment",
+      "to": "cap.stripe"
+    },
+    {
+      "id": "e.payment.wallet",
+      "from": "vertical.payment",
+      "to": "cap.wallet"
+    },
+    {
+      "id": "e.compliance.vat",
+      "from": "vertical.compliance",
+      "to": "cap.vat"
+    },
+    {
+      "id": "e.compliance.ppn",
+      "from": "vertical.compliance",
+      "to": "cap.ppn"
+    },
+    {
+      "id": "e.notification.email",
+      "from": "vertical.notification",
+      "to": "cap.email"
+    },
+    {
+      "id": "e.logistics.fedex",
+      "from": "vertical.logistics",
+      "to": "cap.fedex"
+    },
+    {
+      "id": "e.logistics.local",
+      "from": "vertical.logistics",
+      "to": "cap.local"
+    },
+    {
+      "id": "e.crm.sf",
+      "from": "vertical.crm",
+      "to": "cap.crm.sf"
+    },
+    {
+      "id": "e.crm.hs",
+      "from": "vertical.crm",
+      "to": "cap.crm.hs"
+    },
+    {
+      "id": "e.datastore.firestore",
+      "from": "vertical.datastore",
+      "to": "cap.db.firestore"
+    },
+    {
+      "id": "e.datastore.postgres",
+      "from": "vertical.datastore",
+      "to": "cap.db.postgres"
+    },
+    {
+      "id": "e.done.success",
+      "from": "cap.email",
+      "to": "outcome.success"
+    },
+    {
+      "id": "e.done.block",
+      "from": "policy.risk",
+      "to": "outcome.block"
+    }
+  ],
+  "steps": [
+    {
+      "label": "Intent received: fulfillOrder",
+      "nodes": [
+        "intent.fulfillOrder"
+      ],
+      "edges": [],
+      "event": "intent.start"
+    },
+    {
+      "label": "Policy check: RiskPolicy (OK)",
+      "nodes": [
+        "policy.risk"
+      ],
+      "edges": [
+        "e.intent.risk"
+      ],
+      "event": "policy.check"
+    },
+    {
+      "label": "Policy reroute: SlaPolicy → FedEx preferred",
+      "nodes": [
+        "policy.sla",
+        "cap.fedex"
+      ],
+      "edges": [
+        "e.intent.sla",
+        "e.logistics.fedex"
+      ],
+      "event": "policy.reroute"
+    },
+    {
+      "label": "Select payment/compliance/notification/CRM",
+      "nodes": [
+        "cap.stripe",
+        "cap.vat",
+        "cap.email",
+        "cap.crm.sf"
+      ],
+      "edges": [
+        "e.payment.stripe",
+        "e.compliance.vat",
+        "e.notification.email",
+        "e.crm.sf"
+      ],
+      "event": "capability.selected"
+    },
+    {
+      "label": "Execute all capabilities",
+      "nodes": [
+        "cap.stripe",
+        "cap.vat",
+        "cap.email",
+        "cap.fedex",
+        "cap.crm.sf"
+      ],
+      "edges": [
+        "e.done.success"
+      ],
+      "event": "capability.executed"
+    },
+    {
+      "label": "Intent completed successfully",
+      "nodes": [
+        "outcome.success"
+      ],
+      "edges": [
+        "e.done.success"
+      ],
+      "event": "intent.end"
+    },
+    {
+      "label": "RiskPolicy blocked a high-risk order",
+      "nodes": [
+        "policy.risk",
+        "outcome.block"
+      ],
+      "edges": [
+        "e.done.block"
+      ],
+      "event": "policy.block"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "success-us",
+      "label": "Success path (US)",
+      "steps": [
+        {
+          "label": "Intent received: fulfillOrder",
+          "nodes": [
+            "intent.fulfillOrder"
+          ],
+          "edges": [],
+          "event": "intent.start"
+        },
+        {
+          "label": "Policy check: RiskPolicy (OK)",
+          "nodes": [
+            "policy.risk"
+          ],
+          "edges": [
+            "e.intent.risk"
+          ],
+          "event": "policy.check"
+        },
+        {
+          "label": "Policy reroute: SlaPolicy → FedEx preferred",
+          "nodes": [
+            "policy.sla",
+            "cap.fedex"
+          ],
+          "edges": [
+            "e.intent.sla",
+            "e.logistics.fedex"
+          ],
+          "event": "policy.reroute"
+        },
+        {
+          "label": "Select payment/notification/CRM",
+          "nodes": [
+            "cap.stripe",
+            "cap.email",
+            "cap.crm.sf"
+          ],
+          "edges": [
+            "e.payment.stripe",
+            "e.notification.email",
+            "e.crm.sf"
+          ],
+          "event": "capability.selected"
+        },
+        {
+          "label": "Execute all capabilities",
+          "nodes": [
+            "cap.stripe",
+            "cap.email",
+            "cap.fedex",
+            "cap.crm.sf",
+            "cap.db.firestore"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "capability.executed"
+        },
+        {
+          "label": "Intent completed successfully",
+          "nodes": [
+            "outcome.success"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "intent.end"
+        }
+      ]
+    },
+    {
+      "id": "success-id",
+      "label": "Success path (Indonesia)",
+      "steps": [
+        {
+          "label": "Intent received: fulfillOrder",
+          "nodes": [
+            "intent.fulfillOrder"
+          ],
+          "edges": [],
+          "event": "intent.start"
+        },
+        {
+          "label": "Policy check: RiskPolicy (OK)",
+          "nodes": [
+            "policy.risk"
+          ],
+          "edges": [
+            "e.intent.risk"
+          ],
+          "event": "policy.check"
+        },
+        {
+          "label": "Policy reroute: SlaPolicy → Local courier",
+          "nodes": [
+            "policy.sla",
+            "cap.local"
+          ],
+          "edges": [
+            "e.intent.sla",
+            "e.logistics.local"
+          ],
+          "event": "policy.reroute"
+        },
+        {
+          "label": "Select wallet payment + PPN compliance",
+          "nodes": [
+            "cap.wallet",
+            "cap.ppn",
+            "cap.email",
+            "cap.crm.hs"
+          ],
+          "edges": [
+            "e.payment.wallet",
+            "e.compliance.ppn",
+            "e.notification.email",
+            "e.crm.hs"
+          ],
+          "event": "capability.selected"
+        },
+        {
+          "label": "Execute all capabilities",
+          "nodes": [
+            "cap.wallet",
+            "cap.ppn",
+            "cap.email",
+            "cap.local",
+            "cap.crm.hs",
+            "cap.db.firestore"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "capability.executed"
+        },
+        {
+          "label": "Intent completed successfully",
+          "nodes": [
+            "outcome.success"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "intent.end"
+        }
+      ]
+    },
+    {
+      "id": "success-de",
+      "label": "Success path (Germany)",
+      "steps": [
+        {
+          "label": "Intent received: fulfillOrder",
+          "nodes": [
+            "intent.fulfillOrder"
+          ],
+          "edges": [],
+          "event": "intent.start"
+        },
+        {
+          "label": "Policy check: RiskPolicy (OK)",
+          "nodes": [
+            "policy.risk"
+          ],
+          "edges": [
+            "e.intent.risk"
+          ],
+          "event": "policy.check"
+        },
+        {
+          "label": "Policy reroute: SlaPolicy → FedEx preferred",
+          "nodes": [
+            "policy.sla",
+            "cap.fedex"
+          ],
+          "edges": [
+            "e.intent.sla",
+            "e.logistics.fedex"
+          ],
+          "event": "policy.reroute"
+        },
+        {
+          "label": "Select payment + EU VAT + enterprise CRM",
+          "nodes": [
+            "cap.stripe",
+            "cap.vat",
+            "cap.email",
+            "cap.crm.sf"
+          ],
+          "edges": [
+            "e.payment.stripe",
+            "e.compliance.vat",
+            "e.notification.email",
+            "e.crm.sf"
+          ],
+          "event": "capability.selected"
+        },
+        {
+          "label": "Execute all capabilities",
+          "nodes": [
+            "cap.stripe",
+            "cap.vat",
+            "cap.email",
+            "cap.fedex",
+            "cap.crm.sf",
+            "cap.db.postgres"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "capability.executed"
+        },
+        {
+          "label": "Intent completed successfully",
+          "nodes": [
+            "outcome.success"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "intent.end"
+        }
+      ]
+    },
+    {
+      "id": "blocked",
+      "label": "Blocked path",
+      "steps": [
+        {
+          "label": "Intent received: fulfillOrder",
+          "nodes": [
+            "intent.fulfillOrder"
+          ],
+          "edges": [],
+          "event": "intent.start"
+        },
+        {
+          "label": "Policy check: RiskPolicy (BLOCK)",
+          "nodes": [
+            "policy.risk",
+            "outcome.block"
+          ],
+          "edges": [
+            "e.intent.risk",
+            "e.done.block"
+          ],
+          "event": "policy.block"
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "All steps",
+      "steps": [
+        {
+          "label": "Intent received: fulfillOrder",
+          "nodes": [
+            "intent.fulfillOrder"
+          ],
+          "edges": [],
+          "event": "intent.start"
+        },
+        {
+          "label": "Policy check: RiskPolicy (OK)",
+          "nodes": [
+            "policy.risk"
+          ],
+          "edges": [
+            "e.intent.risk"
+          ],
+          "event": "policy.check"
+        },
+        {
+          "label": "Policy reroute: SlaPolicy → FedEx preferred",
+          "nodes": [
+            "policy.sla",
+            "cap.fedex"
+          ],
+          "edges": [
+            "e.intent.sla",
+            "e.logistics.fedex"
+          ],
+          "event": "policy.reroute"
+        },
+        {
+          "label": "Select payment/compliance/notification/CRM",
+          "nodes": [
+            "cap.stripe",
+            "cap.vat",
+            "cap.email",
+            "cap.crm.sf"
+          ],
+          "edges": [
+            "e.payment.stripe",
+            "e.compliance.vat",
+            "e.notification.email",
+            "e.crm.sf"
+          ],
+          "event": "capability.selected"
+        },
+        {
+          "label": "Execute all capabilities",
+          "nodes": [
+            "cap.stripe",
+            "cap.vat",
+            "cap.email",
+            "cap.fedex",
+            "cap.crm.sf",
+            "cap.db.firestore"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "capability.executed"
+        },
+        {
+          "label": "Intent completed successfully",
+          "nodes": [
+            "outcome.success"
+          ],
+          "edges": [
+            "e.done.success"
+          ],
+          "event": "intent.end"
+        },
+        {
+          "label": "RiskPolicy blocked a high-risk order",
+          "nodes": [
+            "policy.risk",
+            "outcome.block"
+          ],
+          "edges": [
+            "e.done.block"
+          ],
+          "event": "policy.block"
+        }
+      ]
+    }
+  ],
+  "scenarioGroups": {
+    "contexts": [
+      {
+        "id": "context-us",
+        "label": "USA (card, low risk)",
+        "context": "US • USD • online",
+        "policies": "RiskPolicy OK, SlaPolicy reroute",
+        "compliance": "None",
+        "payment": "Stripe (card)",
+        "datastore": "Firestore (default)",
+        "replayScenarioId": "success-us"
+      },
+      {
+        "id": "context-id",
+        "label": "Indonesia (wallet, VAT)",
+        "context": "ID • IDR • online",
+        "policies": "RiskPolicy OK, SlaPolicy reroute",
+        "compliance": "PPN (Indonesia)",
+        "payment": "Xendit (wallet)",
+        "datastore": "Firestore (default)",
+        "replayScenarioId": "success-id"
+      },
+      {
+        "id": "context-de",
+        "label": "Germany (card, VAT)",
+        "context": "DE • EUR • online",
+        "policies": "RiskPolicy OK, SlaPolicy reroute",
+        "compliance": "EU VAT (Avalara)",
+        "payment": "Stripe (card)",
+        "datastore": "Postgres (enterprise)",
+        "replayScenarioId": "success-de"
+      }
+    ],
+    "providers": [
+      {
+        "id": "provider-stripe-firestore",
+        "label": "Stripe + Firestore",
+        "context": "Global default",
+        "policies": "RiskPolicy OK",
+        "compliance": "EU VAT",
+        "payment": "Stripe (card)",
+        "datastore": "Firestore",
+        "replayScenarioId": "success-us"
+      },
+      {
+        "id": "provider-wallet-firestore",
+        "label": "Xendit + Firestore",
+        "context": "SEA wallets",
+        "policies": "RiskPolicy OK",
+        "compliance": "PPN",
+        "payment": "Xendit (wallet)",
+        "datastore": "Firestore",
+        "replayScenarioId": "success-id"
+      },
+      {
+        "id": "provider-stripe-postgres",
+        "label": "Stripe + Postgres",
+        "context": "Enterprise compliance",
+        "policies": "RiskPolicy OK",
+        "compliance": "EU VAT",
+        "payment": "Stripe (card)",
+        "datastore": "Postgres",
+        "replayScenarioId": "success-de"
+      }
+    ]
+  }
+}
