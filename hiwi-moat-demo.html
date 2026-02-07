@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hiwi — Make workflows feel effortless</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=17" />
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=18" />
   </head>
   <body class="apple">
     <main class="page">
@@ -35,6 +35,69 @@
             <p>Same request adapts automatically to the right outcome.</p>
           </article>
         </div>
+      </section>
+
+      <section class="section feature" id="experience">
+        <article class="feature-panel" data-magic="freedom">
+          <div class="feature-panel__copy">
+            <h2>Freedom to change</h2>
+            <p>Switch regions or vendors and the system adapts instantly — no rewrites, no re‑architecture.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <div class="mini-switch" id="miniSwitchFreedom">
+              <button class="mini-pill" data-option="us">USA</button>
+              <button class="mini-pill" data-option="id">Indonesia</button>
+              <button class="mini-pill" data-option="de">Germany</button>
+            </div>
+            <div class="mini-result" id="miniFreedomResult">
+              Stripe · FedEx · Firestore
+            </div>
+            <div class="mini-path" id="miniFreedomPath">
+              <span>payment</span>
+              <span>logistics</span>
+              <span>datastore</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-panel" data-magic="clarity">
+          <div class="feature-panel__copy">
+            <h2>Clarity by default</h2>
+            <p>Every decision is traceable, so teams trust what runs.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <div class="mini-trace" id="miniTrace">
+              <div class="trace-line">Intent received</div>
+              <div class="trace-line">Policy check</div>
+              <div class="trace-line">Capabilities selected</div>
+              <div class="trace-line">Execution complete</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-panel" data-magic="realities">
+          <div class="feature-panel__copy">
+            <h2>One intent, many realities</h2>
+            <p>The same intent resolves different paths, deterministically.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <svg class="mini-graph" id="miniGraph" viewBox="0 0 420 180" role="img" aria-label="Mini intent graph">
+              <path class="mini-edge" d="M 40 90 C 120 90, 140 40, 220 40" />
+              <path class="mini-edge" d="M 40 90 C 120 90, 140 140, 220 140" />
+              <path class="mini-edge" d="M 220 40 C 280 40, 300 90, 380 90" />
+              <path class="mini-edge" d="M 220 140 C 280 140, 300 90, 380 90" />
+
+              <rect class="mini-node" x="20" y="72" width="80" height="36" rx="18" data-node="intent" />
+              <rect class="mini-node" x="190" y="22" width="90" height="36" rx="18" data-node="pay" />
+              <rect class="mini-node" x="190" y="122" width="90" height="36" rx="18" data-node="notify" />
+              <rect class="mini-node" x="350" y="72" width="70" height="36" rx="18" data-node="done" />
+              <text class="mini-label" x="30" y="96" data-node="intent">intent</text>
+              <text class="mini-label" x="206" y="46" data-node="pay">payment</text>
+              <text class="mini-label" x="202" y="146" data-node="notify">notify</text>
+              <text class="mini-label" x="364" y="96" data-node="done">done</text>
+            </svg>
+          </div>
+        </article>
       </section>
 
       <section class="section story">
@@ -111,6 +174,6 @@
       </footer>
     </main>
 
-    <script src="./hiwi-moat-demo.js?v=17"></script>
+    <script src="./hiwi-moat-demo.js?v=18"></script>
   </body>
 </html>

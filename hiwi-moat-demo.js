@@ -338,6 +338,7 @@ document.getElementById("ctaCopy")?.addEventListener("click", async () => {
 });
 
 bootstrap();
+initMiniDemos();
 
 function setupReplay(replay) {
   const playBtn = document.getElementById("replayPlay");
@@ -755,4 +756,168 @@ function renderEventLog(eventLog) {
     item.textContent = `${entry.timestamp} • ${entry.event.type}`;
     target.appendChild(item);
   });
+}
+
+function initMiniDemos() {
+  const experience = document.getElementById("experience");
+  if (!experience) return;
+
+  let freedomTimer = null;
+  let traceTimer = null;
+  let graphTimer = null;
+
+  const switchEl = document.getElementById("miniSwitchFreedom");
+  const resultEl = document.getElementById("miniFreedomResult");
+  const pathEl = document.getElementById("miniFreedomPath");
+
+  const freedomOptions = [
+    { id: "us", result: "Stripe · FedEx · Firestore", path: ["payment", "logistics", "datastore"] },
+    { id: "id", result: "Xendit · J&T · Firestore", path: ["payment", "logistics", "datastore"] },
+    { id: "de", result: "Adyen · DHL · Postgres", path: ["payment", "logistics", "datastore"] },
+  ];
+
+  let freedomIndex = 0;
+
+  const setFreedom = (id) => {
+    const option = freedomOptions.find((o) => o.id === id) || freedomOptions[0];
+    if (!option) return;
+    freedomIndex = freedomOptions.indexOf(option);
+    if (switchEl) {
+      switchEl.querySelectorAll(".mini-pill").forEach((pill) => pill.classList.remove("is-active"));
+      const active = switchEl.querySelector(`[data-option="${option.id}"]`);
+      if (active) active.classList.add("is-active");
+    }
+    if (resultEl) resultEl.textContent = option.result;
+    if (pathEl) {
+      pathEl.innerHTML = option.path.map((item) => `<span>${item}</span>`).join("");
+    }
+  };
+
+  const startFreedom = () => {
+    if (freedomTimer) return;
+    setFreedom(freedomOptions[freedomIndex]?.id);
+    freedomTimer = window.setInterval(() => {
+      freedomIndex = (freedomIndex + 1) % freedomOptions.length;
+      setFreedom(freedomOptions[freedomIndex]?.id);
+    }, 3200);
+  };
+
+  const stopFreedom = () => {
+    if (freedomTimer) {
+      clearInterval(freedomTimer);
+      freedomTimer = null;
+    }
+  };
+
+  switchEl?.querySelectorAll(".mini-pill").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-option");
+      if (id) setFreedom(id);
+    });
+  });
+
+  const traceLines = Array.from(document.querySelectorAll("#miniTrace .trace-line"));
+  let traceIndex = 0;
+
+  const applyTrace = () => {
+    traceLines.forEach((line, idx) => {
+      line.classList.toggle("is-active", idx === traceIndex);
+    });
+  };
+
+  const startTrace = () => {
+    if (traceTimer || traceLines.length === 0) return;
+    applyTrace();
+    traceTimer = window.setInterval(() => {
+      traceIndex = (traceIndex + 1) % traceLines.length;
+      applyTrace();
+    }, 1000);
+  };
+
+  const stopTrace = () => {
+    if (traceTimer) {
+      clearInterval(traceTimer);
+      traceTimer = null;
+    }
+  };
+
+  const graphEl = document.getElementById("miniGraph");
+  const graphNodes = graphEl ? Array.from(graphEl.querySelectorAll(".mini-node")) : [];
+  const graphLabels = graphEl ? Array.from(graphEl.querySelectorAll(".mini-label")) : [];
+  const graphEdges = graphEl ? Array.from(graphEl.querySelectorAll(".mini-edge")) : [];
+
+  const graphSteps = [
+    { nodes: ["intent"], edges: [] },
+    { nodes: ["intent", "pay"], edges: [0] },
+    { nodes: ["intent", "notify"], edges: [1] },
+    { nodes: ["pay", "notify"], edges: [0, 1] },
+    { nodes: ["done"], edges: [2, 3] },
+  ];
+
+  let graphIndex = 0;
+
+  const applyGraph = () => {
+    const step = graphSteps[graphIndex];
+    graphNodes.forEach((node) => {
+      const id = node.getAttribute("data-node");
+      node.classList.toggle("is-active", step.nodes.includes(id));
+    });
+    graphLabels.forEach((label) => {
+      const id = label.getAttribute("data-node");
+      label.classList.toggle("is-active", step.nodes.includes(id));
+    });
+    graphEdges.forEach((edge, idx) => {
+      edge.classList.toggle("is-active", step.edges.includes(idx));
+    });
+  };
+
+  const startGraph = () => {
+    if (graphTimer || graphNodes.length === 0) return;
+    applyGraph();
+    graphTimer = window.setInterval(() => {
+      graphIndex = (graphIndex + 1) % graphSteps.length;
+      applyGraph();
+    }, 1100);
+  };
+
+  const stopGraph = () => {
+    if (graphTimer) {
+      clearInterval(graphTimer);
+      graphTimer = null;
+    }
+  };
+
+  const startAll = () => {
+    experience.classList.add("is-live");
+    startFreedom();
+    startTrace();
+    startGraph();
+  };
+
+  const stopAll = () => {
+    experience.classList.remove("is-live");
+    stopFreedom();
+    stopTrace();
+    stopGraph();
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) startAll();
+        else stopAll();
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  observer.observe(experience);
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    stopAll();
+    experience.classList.add("is-live");
+    setFreedom(freedomOptions[0].id);
+    applyTrace();
+    applyGraph();
+  }
 }
