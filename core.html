@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hiwi Core — Deterministic intent orchestration</title>
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=22" />
+  </head>
+  <body class="apple">
+    <main class="page">
+      <nav class="nav">
+        <div class="nav__brand">Hiwi</div>
+        <div class="nav__links">
+          <a href="./index.html">Overview</a>
+          <a href="#core">Hiwi Core</a>
+          <a href="./huxen.html">Hiwi HUXEN</a>
+          <a href="./himl.html" class="nav__soon">HIML <span>Coming soon</span></a>
+          <a href="#demo">Live Demo</a>
+          <a href="#waitlist" class="nav__cta">Join waitlist</a>
+        </div>
+      </nav>
+
+      <header class="hero hero--apple" id="core">
+        <div class="hero__tag">Hiwi Core</div>
+        <h1>Make complex workflows feel effortless.</h1>
+        <p class="hero__lead">
+          One intent that adapts everywhere — country, policy, vendor — without rewriting your system.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#waitlist">Join the waitlist</a>
+          <a class="btn btn--ghost" href="#demo">Try the live demo</a>
+        </div>
+      </header>
+
+      <section class="section duo" id="huxen">
+        <div class="duo__copy">
+          <span class="duo__tag">Hiwi HUXEN</span>
+          <h2>Design the experience once. Ship it everywhere.</h2>
+          <p>
+            HUXEN is Hiwi’s interface engine — a calm layer that turns intent into UI journeys, so teams can
+            ship clarity without rebuilding every screen.
+          </p>
+          <div class="duo__chips">
+            <span>Adaptive UI</span>
+            <span>Unified design rules</span>
+            <span>Human‑first flows</span>
+          </div>
+        </div>
+        <div class="duo__visual">
+          <div class="duo__glass">
+            <div class="duo__pulse"></div>
+            <div class="duo__line"></div>
+            <div class="duo__line"></div>
+            <div class="duo__line"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section feature" id="experience">
+        <article class="feature-panel" data-magic="freedom">
+          <div class="feature-panel__copy">
+            <h2>Freedom to change</h2>
+            <p>Switch regions or vendors and the system adapts instantly — no rewrites, no re‑architecture.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <div class="mini-switch" id="miniSwitchFreedom">
+              <button class="mini-pill" data-option="us">USA</button>
+              <button class="mini-pill" data-option="id">Indonesia</button>
+              <button class="mini-pill" data-option="de">Germany</button>
+            </div>
+            <div class="mini-result" id="miniFreedomResult">
+              Stripe · FedEx · Firestore
+            </div>
+            <div class="mini-path" id="miniFreedomPath">
+              <span>payment</span>
+              <span>logistics</span>
+              <span>datastore</span>
+            </div>
+            <div class="mini-meta" id="miniFreedomMeta">Last run: ready</div>
+          </div>
+        </article>
+
+        <article class="feature-panel" data-magic="clarity">
+          <div class="feature-panel__copy">
+            <h2>Clarity by default</h2>
+            <p>Every decision is traceable, so teams trust what runs.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <div class="mini-trace" id="miniTrace">
+              <div class="trace-line">Intent received</div>
+              <div class="trace-line">Policy check</div>
+              <div class="trace-line">Capabilities selected</div>
+              <div class="trace-line">Execution complete</div>
+            </div>
+            <div class="mini-meta">Every step is recorded and replayable.</div>
+          </div>
+        </article>
+
+        <article class="feature-panel" data-magic="realities">
+          <div class="feature-panel__copy">
+            <h2>One intent, many realities</h2>
+            <p>The same intent resolves different paths, deterministically.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <svg class="mini-graph" id="miniGraph" viewBox="0 0 420 180" role="img" aria-label="Mini intent graph">
+              <path class="mini-edge" d="M 40 90 C 120 90, 140 40, 220 40" />
+              <path class="mini-edge" d="M 40 90 C 120 90, 140 140, 220 140" />
+              <path class="mini-edge" d="M 220 40 C 280 40, 300 90, 380 90" />
+              <path class="mini-edge" d="M 220 140 C 280 140, 300 90, 380 90" />
+
+              <rect class="mini-node" x="20" y="72" width="80" height="36" rx="18" data-node="intent" />
+              <rect class="mini-node" x="190" y="22" width="90" height="36" rx="18" data-node="pay" />
+              <rect class="mini-node" x="190" y="122" width="90" height="36" rx="18" data-node="notify" />
+              <rect class="mini-node" x="350" y="72" width="70" height="36" rx="18" data-node="done" />
+              <text class="mini-label" x="30" y="96" data-node="intent">intent</text>
+              <text class="mini-label" x="206" y="46" data-node="pay">payment</text>
+              <text class="mini-label" x="202" y="146" data-node="notify">notify</text>
+              <text class="mini-label" x="364" y="96" data-node="done">done</text>
+            </svg>
+            <div class="mini-meta">Deterministic graph = predictable outcomes.</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section highlight" id="demo">
+        <div class="highlight__copy">
+          <h2>See the magic, live</h2>
+          <p>
+            Choose a context, press run, and watch the system resolve the best path in real time.
+          </p>
+        </div>
+        <details class="demo__drawer" open>
+          <summary>Open live demo</summary>
+          <section class="card scenario">
+            <h2>Scenario Switches</h2>
+            <div class="scenario__label">Context + compliance</div>
+            <div class="scenario__row" id="scenarioContexts"></div>
+            <div class="scenario__label">Provider swaps (payments + datastore)</div>
+            <div class="scenario__row" id="scenarioProviders"></div>
+            <div class="scenario__output" id="scenarioOutput">Select a scenario to preview decisions.</div>
+            <div class="scenario__actions">
+              <button class="btn btn--primary" id="scenarioRun">Run Intent</button>
+            </div>
+          </section>
+
+          <section class="card graph">
+            <div class="graph__header">
+              <h2>Intent → Capability Graph</h2>
+              <p>Auto-built from the latest run records.</p>
+            </div>
+            <div class="graph__controls">
+              <button class="btn btn--primary" id="replayPlay">Play Replay</button>
+              <button class="btn btn--ghost" id="replayPause">Pause</button>
+              <div class="graph__status" id="replayStatus">ready</div>
+            </div>
+            <div class="graph__scenarios" id="replayScenarios"></div>
+            <div class="graph__canvas">
+              <svg id="flowGraph" viewBox="0 0 980 680" role="img" aria-label="Flow graph"></svg>
+              <div class="graph__tooltip" id="graphTooltip"></div>
+            </div>
+            <div class="graph__steps" id="replaySteps"></div>
+          </section>
+
+          <section class="card detail">
+            <div class="detail__header">
+              <h2>Audit + Trace</h2>
+              <p>Every decision is captured and exportable for BI and process mining.</p>
+            </div>
+            <div class="detail__grid">
+              <div class="detail__col">
+                <h3>Recipes</h3>
+                <div id="recipeBlock"></div>
+              </div>
+              <div class="detail__col">
+                <h3>Policies</h3>
+                <div id="policyBlock"></div>
+              </div>
+              <div class="detail__col">
+                <h3>Capabilities</h3>
+                <div id="capabilityList"></div>
+              </div>
+            </div>
+            <div class="detail__trace">
+              <h3>Decision trace</h3>
+              <div id="decisionTrace"></div>
+            </div>
+          </section>
+
+          <section class="card eventlog">
+            <div class="eventlog__header">
+              <h2>Events Fired (Live)</h2>
+              <p>Export the event stream for BI, process mining, or audit review.</p>
+            </div>
+            <div class="eventlog__actions">
+              <a class="btn btn--ghost" href="./hiwi_event_log.json" download>Export JSON</a>
+              <a class="btn btn--ghost" href="./hiwi_event_log.csv" download>Export CSV</a>
+              <a class="btn btn--primary" href="./hiwi_event_log.xes" download>Export Process Mine (XES)</a>
+            </div>
+            <div class="eventlog__stream" id="eventLogStream"></div>
+          </section>
+        </details>
+      </section>
+
+      <section class="section waitlist" id="waitlist">
+        <div class="waitlist__copy">
+          <h2>Want early access?</h2>
+          <p>Join the waitlist and we’ll reach out for early pilots.</p>
+        </div>
+        <div class="waitlist__form">
+          <a class="btn btn--primary" href="https://forms.gle/8jUyykeKEeq7VK9Z8" target="_blank" rel="noreferrer">Join waitlist</a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>Hiwi © 2026</div>
+        <div>hello@hiwidigi.com</div>
+      </footer>
+    </main>
+
+    <script src="./hiwi-moat-demo.js?v=22"></script>
+  </body>
+</html>
