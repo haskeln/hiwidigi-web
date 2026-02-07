@@ -771,9 +771,9 @@ function initMiniDemos() {
   const pathEl = document.getElementById("miniFreedomPath");
 
   const freedomOptions = [
-    { id: "us", result: "Stripe · FedEx · Firestore", path: ["payment", "logistics", "datastore"] },
-    { id: "id", result: "Xendit · J&T · Firestore", path: ["payment", "logistics", "datastore"] },
-    { id: "de", result: "Adyen · DHL · Postgres", path: ["payment", "logistics", "datastore"] },
+    { id: "us", result: "Stripe · FedEx · Firestore", path: ["payment", "logistics", "datastore"], scenarioId: "us-default" },
+    { id: "id", result: "Xendit · J&T · Firestore", path: ["payment", "logistics", "datastore"], scenarioId: "id-default" },
+    { id: "de", result: "Adyen · DHL · Postgres", path: ["payment", "logistics", "datastore"], scenarioId: "de-default" },
   ];
 
   let freedomIndex = 0;
@@ -791,6 +791,35 @@ function initMiniDemos() {
     if (pathEl) {
       pathEl.innerHTML = option.path.map((item) => `<span>${item}</span>`).join("");
     }
+    runMiniScenario(option);
+  };
+
+  const metaEl = document.getElementById("miniFreedomMeta");
+  const runMiniScenario = (option) => {
+    if (!option?.scenarioId) return;
+    if (metaEl) metaEl.textContent = "Running…";
+    const apiBase = window.location.hostname.includes("hiwidigi.com")
+      ? "https://api.hiwidigi.com"
+      : "http://localhost:5174";
+    fetch(`${apiBase}/run-intent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ scenarioId: option.scenarioId }),
+    })
+      .then((res) => res.json())
+      .then((payload) => {
+        const selection = payload?.selection || payload?.result?.selection || payload?.data?.selection;
+        if (selection && resultEl) {
+          const payment = selection.payment?.provider || selection.payment || "payment";
+          const logistics = selection.logistics?.provider || selection.logistics || "logistics";
+          const datastore = selection.datastore?.provider || selection.datastore || "datastore";
+          resultEl.textContent = `${payment} · ${logistics} · ${datastore}`;
+        }
+        if (metaEl) metaEl.textContent = "Last run: just now";
+      })
+      .catch(() => {
+        if (metaEl) metaEl.textContent = "Last run: cached";
+      });
   };
 
   const startFreedom = () => {

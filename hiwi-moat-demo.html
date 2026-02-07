@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hiwi — Make workflows feel effortless</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=18" />
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=19" />
   </head>
   <body class="apple">
     <main class="page">
@@ -19,23 +19,6 @@
           <a class="btn btn--ghost" href="#demo">Try the live demo</a>
         </div>
       </header>
-
-      <section class="section proof">
-        <div class="proof__grid">
-          <article class="proof__card">
-            <h3>Freedom to change</h3>
-            <p>Swap vendors, regions, or policies without a rewrite.</p>
-          </article>
-          <article class="proof__card">
-            <h3>Clarity by default</h3>
-            <p>Every decision is traceable, so teams trust what runs.</p>
-          </article>
-          <article class="proof__card">
-            <h3>One intent, many realities</h3>
-            <p>Same request adapts automatically to the right outcome.</p>
-          </article>
-        </div>
-      </section>
 
       <section class="section feature" id="experience">
         <article class="feature-panel" data-magic="freedom">
@@ -57,6 +40,7 @@
               <span>logistics</span>
               <span>datastore</span>
             </div>
+            <div class="mini-meta" id="miniFreedomMeta">Last run: ready</div>
           </div>
         </article>
 
@@ -72,6 +56,7 @@
               <div class="trace-line">Capabilities selected</div>
               <div class="trace-line">Execution complete</div>
             </div>
+            <div class="mini-meta">Every step is recorded and replayable.</div>
           </div>
         </article>
 
@@ -96,25 +81,9 @@
               <text class="mini-label" x="202" y="146" data-node="notify">notify</text>
               <text class="mini-label" x="364" y="96" data-node="done">done</text>
             </svg>
+            <div class="mini-meta">Deterministic graph = predictable outcomes.</div>
           </div>
         </article>
-      </section>
-
-      <section class="section story">
-        <div class="story__block">
-          <h2>Why it feels better</h2>
-          <p>
-            Today, teams hard‑code dozens of branches for countries, providers, compliance, and data stores.
-            That makes change expensive, slow, and risky. Hiwi collapses that complexity into one intent.
-          </p>
-        </div>
-        <div class="story__block">
-          <h2>What becomes possible</h2>
-          <p>
-            Launch in new regions without rebuilding. Swap vendors in days, not months. Prove what happened when
-            something changes. Your system becomes adaptable — without chaos.
-          </p>
-        </div>
       </section>
 
       <section class="section highlight" id="demo">
@@ -155,6 +124,44 @@
             </div>
             <div class="graph__steps" id="replaySteps"></div>
           </section>
+
+          <section class="card detail">
+            <div class="detail__header">
+              <h2>Audit + Trace</h2>
+              <p>Every decision is captured and exportable for BI and process mining.</p>
+            </div>
+            <div class="detail__grid">
+              <div class="detail__col">
+                <h3>Recipes</h3>
+                <div id="recipeBlock"></div>
+              </div>
+              <div class="detail__col">
+                <h3>Policies</h3>
+                <div id="policyBlock"></div>
+              </div>
+              <div class="detail__col">
+                <h3>Capabilities</h3>
+                <div id="capabilityList"></div>
+              </div>
+            </div>
+            <div class="detail__trace">
+              <h3>Decision trace</h3>
+              <div id="decisionTrace"></div>
+            </div>
+          </section>
+
+          <section class="card eventlog">
+            <div class="eventlog__header">
+              <h2>Events Fired (Live)</h2>
+              <p>Export the event stream for BI, process mining, or audit review.</p>
+            </div>
+            <div class="eventlog__actions">
+              <a class="btn btn--ghost" href="./hiwi_event_log.json" download>Export JSON</a>
+              <a class="btn btn--ghost" href="./hiwi_event_log.csv" download>Export CSV</a>
+              <a class="btn btn--primary" href="./hiwi_event_log.xes" download>Export Process Mine (XES)</a>
+            </div>
+            <div class="eventlog__stream" id="eventLogStream"></div>
+          </section>
         </details>
       </section>
 
@@ -174,6 +181,6 @@
       </footer>
     </main>
 
-    <script src="./hiwi-moat-demo.js?v=18"></script>
+    <script src="./hiwi-moat-demo.js?v=19"></script>
   </body>
 </html>
