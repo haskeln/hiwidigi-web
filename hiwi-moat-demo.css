@@ -753,3 +753,44 @@ body.apple {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* Minimal Apple-like polish */
+.hero--apple h1 {
+  letter-spacing: -0.02em;
+}
+
+.demo__drawer summary {
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.demo__drawer[open] summary {
+  margin-bottom: 20px;
+}
+
+.proof__card h3,
+.story__block h2,
+.highlight__copy h2,
+.waitlist__copy h2 {
+  margin-top: 0;
+}
+
+.highlight__copy p,
+.story__block p,
+.proof__card p {
+  color: var(--muted);
+}
+
+.section {
+  margin-top: 52px;
+}
+
+.hero__actions .btn {
+  padding: 10px 18px;
+}
+
+.footer {
+  padding-bottom: 40px;
+}

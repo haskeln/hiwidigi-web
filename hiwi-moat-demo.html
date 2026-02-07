@@ -3,240 +3,97 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hiwi — Deterministic Intent Orchestration</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=15" />
+    <title>Hiwi — Make workflows feel like magic</title>
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=16" />
   </head>
   <body class="apple">
     <main class="page">
       <header class="hero hero--apple">
-        <div class="hero__tag">Hiwi v1 • Deterministic Intent Orchestration</div>
-        <h1>One intent. Many realities.</h1>
+        <div class="hero__tag">Hiwi v1</div>
+        <h1>Make complex workflows feel simple.</h1>
         <p class="hero__lead">
-          Hiwi makes execution feel effortless — the same intent adapts to country, policy, and provider without rewriting flows.
+          Hiwi lets one intent adapt to any context — country, policy, vendor — without rewriting your system.
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#waitlist">Join the waitlist</a>
-          <a class="btn btn--ghost" href="#live-demo">Try the live demo</a>
-          <span class="hero__status" id="statusBadge">loading…</span>
+          <a class="btn btn--ghost" href="#demo">Try the live demo</a>
         </div>
       </header>
 
       <section class="section proof">
         <div class="proof__grid">
           <article class="proof__card">
-            <h3>Deterministic</h3>
-            <p>Same intent, different context, always reproducible.</p>
+            <h3>Freedom to change</h3>
+            <p>Switch vendors, regions, or policies without a rewrite.</p>
           </article>
           <article class="proof__card">
-            <h3>Swappable</h3>
-            <p>Swap vendors without rewriting flows.</p>
+            <h3>Clarity by default</h3>
+            <p>Every decision is traceable, so teams trust what runs.</p>
           </article>
           <article class="proof__card">
-            <h3>Auditable</h3>
-            <p>Full decision trace + exportable logs.</p>
+            <h3>One intent, many realities</h3>
+            <p>Same request adapts automatically to the right outcome.</p>
           </article>
         </div>
-      </section>
-
-      <section class="section highlight" id="live-demo">
-        <div class="highlight__copy">
-          <h2>The demo you can feel</h2>
-          <p>
-            Pick a context and providers, hit run, and watch the system resolve the best path in real time.
-          </p>
-        </div>
-        <section class="card scenario">
-          <h2>Scenario Switches</h2>
-          <div class="scenario__label">Context + compliance</div>
-          <div class="scenario__row" id="scenarioContexts"></div>
-          <div class="scenario__label">Provider swaps (payments + datastore)</div>
-          <div class="scenario__row" id="scenarioProviders"></div>
-          <div class="scenario__output" id="scenarioOutput">Select a scenario to preview decisions.</div>
-          <div class="scenario__actions">
-            <button class="btn btn--primary" id="scenarioRun">Run Intent</button>
-          </div>
-        </section>
-
-        <section class="card graph">
-          <div class="graph__header">
-            <h2>Intent → Capability Graph</h2>
-            <p>Auto-built from the latest run records.</p>
-          </div>
-          <div class="graph__controls">
-            <button class="btn btn--primary" id="replayPlay">Play Replay</button>
-            <button class="btn btn--ghost" id="replayPause">Pause</button>
-            <div class="graph__status" id="replayStatus">ready</div>
-          </div>
-          <div class="graph__scenarios" id="replayScenarios"></div>
-          <div class="graph__canvas">
-            <svg id="flowGraph" viewBox="0 0 980 680" role="img" aria-label="Flow graph"></svg>
-            <div class="graph__tooltip" id="graphTooltip"></div>
-          </div>
-          <div class="graph__steps" id="replaySteps"></div>
-        </section>
       </section>
 
       <section class="section story">
         <div class="story__block">
-          <h2>Why this exists</h2>
+          <h2>Why it feels better</h2>
           <p>
-            Teams ship the same intent 20 different ways — country rules, payment providers, compliance, logistics, CRM, data stores.
-            Every new policy creates another fork. Hiwi collapses that chaos into one deterministic intent.
+            Today, teams hard‑code dozens of branches for countries, providers, compliance, and data stores.
+            That makes change expensive, slow, and risky. Hiwi collapses that complexity into one intent.
           </p>
         </div>
         <div class="story__block">
-          <h2>How it works</h2>
-          <p>Context → Policies → Capabilities → Execution. The system resolves and proves every decision.</p>
+          <h2>What becomes possible</h2>
+          <p>
+            Launch in new regions without rebuilding. Swap vendors in days, not months. Prove what happened when
+            something changes. Your system becomes adaptable — without chaos.
+          </p>
         </div>
       </section>
 
-      <section class="card compare">
-        <h2>Before vs After (Real Pain)</h2>
-        <div class="compare__grid">
-          <div class="compare__card">
-            <div class="compare__title">Before Hiwi (hard-coded flows)</div>
-            // every country = new branch
-            if (country === 'DE') {
-              useStripe();
-              useAvalaraVat();
-              useDhl();
-              usePostgres();
-            } else if (country === 'ID') {
-              useXenditWallet();
-              usePpn();
-              useLocalCourier();
-              useFirestore();
-            } else {
-              useStripe();
-              useNoCompliance();
-              useFedex();
-              useFirestore();
-            }
-
-            // provider swap = rewrite & retest
-            // compliance change = new fork
-          </div>
-          <div class="compare__card">
-            <div class="compare__title">After Hiwi (intent + rules)</div>
-            const intent = 'fulfillOrder';
-            const context = {
-              core: { country, currency, payment_method },
-              ext: { customer_tier, preferred_logistics, datastore }
-            };
-
-            const result = await orchestrator.orchestrate(
-              intent,
-              params,
-              executor
-            );
-
-            // swap providers by config
-            // policies decide the path
-          </div>
+      <section class="section highlight" id="demo">
+        <div class="highlight__copy">
+          <h2>See the magic, live</h2>
+          <p>
+            Choose a context, press run, and watch the system resolve the best path in real time.
+          </p>
         </div>
+        <details class="demo__drawer" open>
+          <summary>Open live demo</summary>
+          <section class="card scenario">
+            <h2>Scenario Switches</h2>
+            <div class="scenario__label">Context + compliance</div>
+            <div class="scenario__row" id="scenarioContexts"></div>
+            <div class="scenario__label">Provider swaps (payments + datastore)</div>
+            <div class="scenario__row" id="scenarioProviders"></div>
+            <div class="scenario__output" id="scenarioOutput">Select a scenario to preview decisions.</div>
+            <div class="scenario__actions">
+              <button class="btn btn--primary" id="scenarioRun">Run Intent</button>
+            </div>
+          </section>
+
+          <section class="card graph">
+            <div class="graph__header">
+              <h2>Intent → Capability Graph</h2>
+              <p>Auto-built from the latest run records.</p>
+            </div>
+            <div class="graph__controls">
+              <button class="btn btn--primary" id="replayPlay">Play Replay</button>
+              <button class="btn btn--ghost" id="replayPause">Pause</button>
+              <div class="graph__status" id="replayStatus">ready</div>
+            </div>
+            <div class="graph__scenarios" id="replayScenarios"></div>
+            <div class="graph__canvas">
+              <svg id="flowGraph" viewBox="0 0 980 680" role="img" aria-label="Flow graph"></svg>
+              <div class="graph__tooltip" id="graphTooltip"></div>
+            </div>
+            <div class="graph__steps" id="replaySteps"></div>
+          </section>
+        </details>
       </section>
-
-      <section class="section code">
-        <h2>Developer friendly</h2>
-        <div class="yc-code-list">
-          <div class="yc-code">
-            <div class="yc-code__title">// 1) Register capabilities + recipes</div>
-            const registry = new CapabilityRegistry();
-            registry.register(stripePaymentCapability);
-            registry.register(walletPaymentCapability);
-            registry.register(emailNotificationCapability);
-            registry.register(vatComplianceCapability);
-            registry.register(logisticsFedexPreferred);
-
-            const recipes = new RecipeRegistry();
-            recipes.register(checkoutRecipe);
-          </div>
-          <div class="yc-code">
-            <div class="yc-code__title">// 2) Add policies + bridges</div>
-            const policies = [new RiskPolicy(), new SlaPolicy()];
-            const bridge = new N8nBridgeAdapter({
-              baseUrl: process.env.N8N_URL!,
-              apiKey: process.env.N8N_API_KEY!,
-              workflowMappings: { 'sendgrid.send': 'abc123' }
-            });
-          </div>
-          <div class="yc-code">
-            <div class="yc-code__title">// 3) Execute intent (deterministic)</div>
-            const orchestrator = new Orchestrator(registry, recipes, policies);
-            const executor = new Executor(dataStore, { bridge });
-
-            const result = await orchestrator.executeIntent(
-              executor,
-              'checkout',
-              { orderId, total },
-              context
-            );
-          </div>
-        </div>
-      </section>
-
-      <details class="section technical">
-        <summary>See technical proof (KPIs, traces, logs)</summary>
-        <section class="grid grid--kpi" id="kpiGrid">
-          <article class="card kpi">
-            <div class="kpi__label">Success Rate (Fast)</div>
-            <div class="kpi__value" data-kpi="fastSuccess">--</div>
-            <div class="kpi__hint">measured across all runs</div>
-          </article>
-          <article class="card kpi">
-            <div class="kpi__label">Success Rate (Slow)</div>
-            <div class="kpi__value" data-kpi="slowSuccess">--</div>
-            <div class="kpi__hint">provider swap impact</div>
-          </article>
-          <article class="card kpi">
-            <div class="kpi__label">Avg Duration (Fast)</div>
-            <div class="kpi__value" data-kpi="fastDuration">--</div>
-            <div class="kpi__hint">ms per orchestration</div>
-          </article>
-          <article class="card kpi">
-            <div class="kpi__label">Avg Duration (Slow)</div>
-            <div class="kpi__value" data-kpi="slowDuration">--</div>
-            <div class="kpi__hint">latency delta</div>
-          </article>
-          <article class="card kpi">
-            <div class="kpi__label">Total Cost (Fast)</div>
-            <div class="kpi__value" data-kpi="fastCost">--</div>
-            <div class="kpi__hint">simulated external cost</div>
-          </article>
-          <article class="card kpi">
-            <div class="kpi__label">Total Cost (Slow)</div>
-            <div class="kpi__value" data-kpi="slowCost">--</div>
-            <div class="kpi__hint">swap impact</div>
-          </article>
-        </section>
-
-        <section class="grid grid--detail">
-          <article class="card detail">
-            <h2>Recipe</h2>
-            <div id="recipeBlock"></div>
-          </article>
-          <article class="card detail">
-            <h2>Policies</h2>
-            <div id="policyBlock"></div>
-          </article>
-          <article class="card detail">
-            <h2>Capabilities</h2>
-            <div id="capabilityList"></div>
-          </article>
-          <article class="card detail">
-            <h2>Decision Trace</h2>
-            <div id="decisionTrace"></div>
-          </article>
-        </section>
-
-        <section class="card eventlog">
-          <div class="eventlog__header">
-            <h2>Events Fired (Live)</h2>
-            <p>Animated from event log export.</p>
-          </div>
-          <div id="eventLogStream"></div>
-        </section>
-      </details>
 
       <section class="section waitlist" id="waitlist">
         <div class="waitlist__copy">
@@ -255,6 +112,6 @@
       </footer>
     </main>
 
-    <script src="./hiwi-moat-demo.js?v=15"></script>
+    <script src="./hiwi-moat-demo.js?v=16"></script>
   </body>
 </html>
