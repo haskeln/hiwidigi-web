@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>Hiwi Core - Deterministic Workflow Orchestration</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=55" />
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=57" />
   </head>
   <body class="apple">
     <main class="page">
@@ -24,17 +24,14 @@
       </nav>
 
       <header class="hero hero--apple pin-section" id="core">
-        <div class="hero__tag">Hiwi Core</div>
         <h1>One Intent. Context-Aware Execution. Deterministic Outcomes.</h1>
         <p class="hero__lead">
           SaaS teams lose shipping speed to brittle integrations and edge-case branching. Hiwi Core uses
           ECS-based orchestration to resolve one intent into the right workflow for each context,
           with auditable decisions and provider flexibility built in.
         </p>
-        <div class="hero__status" id="statusBadge">loading...</div>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#demo">Run Live Demo</a>
-          <a class="btn btn--ghost" href="#proof">See Proof</a>
         </div>
       </header>
 
@@ -339,10 +336,19 @@
               </div>
               <div class="graph__controls">
                 <div class="graph__status" id="replayStatus">auto replay active</div>
+                <button class="graph__follow graph__follow--active" id="followCameraToggle" type="button" aria-pressed="true">Follow mode</button>
+              </div>
+              <div class="graph__lanes" aria-hidden="true">
+                <span>Intent</span>
+                <span>Policy</span>
+                <span>Components</span>
+                <span>Capabilities</span>
+                <span>Outcome</span>
               </div>
               <div class="graph__scenarios" id="replayScenarios"></div>
               <div class="graph__canvas">
                 <svg id="flowGraph" viewBox="0 0 980 680" role="img" aria-label="Flow graph"></svg>
+                <div class="graph__minimap" id="graphMinimap" aria-hidden="true"></div>
               </div>
               <div class="graph__steps" id="replaySteps"></div>
             </section>
@@ -431,7 +437,7 @@
     </main>
 
     <script src="https://unpkg.com/elkjs/lib/elk.bundled.js"></script>
-    <script src="./hiwi-nav.js?v=4"></script>
-    <script src="./hiwi-moat-demo.js?v=51"></script>
+    <script src="./hiwi-nav.js?v=7"></script>
+    <script src="./hiwi-moat-demo.js?v=54"></script>
   </body>
 </html>

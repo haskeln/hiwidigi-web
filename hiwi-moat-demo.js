@@ -207,6 +207,53 @@ function renderTimeline(runs) {
 async function renderGraph(runs, replay) {
   const svg = $("#flowGraph");
   if (!svg) return;
+  const NODE_WIDTH = 238;
+  const NODE_HEIGHT = 108;
+
+  const truncate = (text, max = 44) => {
+    if (!text) return "";
+    return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+  };
+
+  const textWidth = (text, min = 62, max = 140) =>
+    Math.max(min, Math.min(max, Math.round((text || "").length * 6.8 + 20)));
+
+  const nodeKindLabel = (group = "") => {
+    const map = {
+      intent: "INTENT",
+      policy: "POLICY",
+      vertical: "COMPONENT",
+      capability: "CAPABILITY",
+      outcome: "OUTCOME",
+    };
+    return map[group] || "NODE";
+  };
+
+  const nodeMeta = (node) => {
+    const info = (node.info || "").trim();
+    if (node.group === "capability") {
+      const provider = info.includes("•") ? info.split("•")[0].trim() : "";
+      return truncate(provider ? `Loaded from ${provider}` : `Loaded from ${node.id}`, 38);
+    }
+    if (node.group === "policy") return truncate(`Policy from ${node.id}`, 38);
+    if (node.group === "vertical") return truncate(`Context component: ${node.label}`, 38);
+    if (node.group === "intent") return truncate(`Recipe source: ${node.id}`, 38);
+    if (node.group === "outcome") return truncate(info || `Outcome: ${node.label}`, 38);
+    return truncate(info || `Source: ${node.id}`, 38);
+  };
+
+  const nodeSourceChip = (node) => {
+    const info = (node.info || "").trim();
+    if (node.group === "capability") {
+      const provider = info.includes("•") ? info.split("•")[0].trim() : "";
+      return provider ? `${provider} source` : "Capability source";
+    }
+    if (node.group === "policy") return "Policy guard";
+    if (node.group === "vertical") return "ECS component";
+    if (node.group === "intent") return "Intent recipe";
+    if (node.group === "outcome") return "Execution result";
+    return "Runtime source";
+  };
 
   const baseNodes = replay?.nodes?.length
     ? replay.nodes
@@ -254,7 +301,7 @@ async function renderGraph(runs, replay) {
     const laneGapX = 300;
     const laneStartX = 40;
     const laneStartY = 20;
-    const laneGapY = 120;
+    const laneGapY = 130;
     const laneSort = {
       intent: ["intent.fulfillOrder"],
       policy: ["policy.risk", "policy.sla"],
@@ -317,8 +364,8 @@ async function renderGraph(runs, replay) {
         },
         children: nodeData.map((node) => ({
           id: node.id,
-          width: 160,
-          height: 40,
+          width: NODE_WIDTH,
+          height: NODE_HEIGHT,
         })),
         edges: edges.map((edge) => ({
           id: edge.id || `edge-${edge.from}-${edge.to}`,
@@ -353,8 +400,8 @@ async function renderGraph(runs, replay) {
   nodeData.forEach((node) => {
     minNodeX = Math.min(minNodeX, node.x);
     minNodeY = Math.min(minNodeY, node.y);
-    maxNodeX = Math.max(maxNodeX, node.x + 160);
-    maxNodeY = Math.max(maxNodeY, node.y + 40);
+    maxNodeX = Math.max(maxNodeX, node.x + NODE_WIDTH);
+    maxNodeY = Math.max(maxNodeY, node.y + NODE_HEIGHT);
   });
   const padX = 130;
   const padY = 90;
@@ -392,7 +439,7 @@ async function renderGraph(runs, replay) {
       const midY = (from.y + to.y) / 2;
       path.setAttribute(
         "d",
-        `M ${from.x + 160} ${from.y + 20} Q ${midX} ${midY}, ${to.x} ${to.y + 20}`
+        `M ${from.x + NODE_WIDTH} ${from.y + NODE_HEIGHT / 2} Q ${midX} ${midY}, ${to.x} ${to.y + NODE_HEIGHT / 2}`
       );
     }
     path.setAttribute("class", `edge${edge.synthetic ? " edge--synthetic" : ""}`);
@@ -405,10 +452,10 @@ async function renderGraph(runs, replay) {
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", node.x);
     rect.setAttribute("y", node.y);
-    rect.setAttribute("rx", "14");
-    rect.setAttribute("ry", "14");
-    rect.setAttribute("width", "160");
-    rect.setAttribute("height", "40");
+    rect.setAttribute("rx", "16");
+    rect.setAttribute("ry", "16");
+    rect.setAttribute("width", String(NODE_WIDTH));
+    rect.setAttribute("height", String(NODE_HEIGHT));
     const typeClass = node.group ? ` node--${node.group}` : "";
     rect.setAttribute(
       "class",
@@ -421,17 +468,62 @@ async function renderGraph(runs, replay) {
     if (node.provider) rect.setAttribute("data-node-provider", node.provider);
     if (node.verbs) rect.setAttribute("data-node-verbs", (node.verbs || []).join(", "));
     if (node.constraints) rect.setAttribute("data-node-constraints", (node.constraints || []).length.toString());
-    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    text.setAttribute("x", node.x + 12);
-    text.setAttribute("y", node.y + 26);
-    text.setAttribute("fill", "#f5f6fb");
-    text.setAttribute("font-family", "IBM Plex Mono, monospace");
-    text.setAttribute("font-size", "12");
-    text.setAttribute("class", "node-label");
-    text.setAttribute("data-node-id", node.id);
-    text.textContent = node.label;
+    const badge = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    badge.setAttribute("x", String(node.x + 12));
+    badge.setAttribute("y", String(node.y + 10));
+    badge.setAttribute("rx", "10");
+    badge.setAttribute("ry", "10");
+    badge.setAttribute("width", "96");
+    badge.setAttribute("height", "20");
+    badge.setAttribute("class", `node-kind node-kind--${node.group || "other"}`);
+
+    const badgeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    badgeText.setAttribute("x", String(node.x + 22));
+    badgeText.setAttribute("y", String(node.y + 24));
+    badgeText.setAttribute("class", "node-kind__label");
+    badgeText.textContent = nodeKindLabel(node.group);
+
+    const chipText = nodeSourceChip(node);
+    const chip = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    chip.setAttribute("x", String(node.x + NODE_WIDTH - textWidth(chipText) - 14));
+    chip.setAttribute("y", String(node.y + NODE_HEIGHT - 28));
+    chip.setAttribute("rx", "10");
+    chip.setAttribute("ry", "10");
+    chip.setAttribute("width", String(textWidth(chipText)));
+    chip.setAttribute("height", "18");
+    chip.setAttribute("class", "node-source");
+
+    const chipLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    chipLabel.setAttribute("x", String(node.x + NODE_WIDTH - textWidth(chipText) - 4));
+    chipLabel.setAttribute("y", String(node.y + NODE_HEIGHT - 15));
+    chipLabel.setAttribute("class", "node-source__label");
+    chipLabel.textContent = chipText;
+
+    const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    title.setAttribute("x", String(node.x + 14));
+    title.setAttribute("y", String(node.y + 52));
+    title.setAttribute("class", "node-label node-title");
+    title.setAttribute("data-node-id", node.id);
+    title.textContent = truncate(node.label || node.id, 30);
+
+    const meta = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    meta.setAttribute("x", String(node.x + 14));
+    meta.setAttribute("y", String(node.y + 74));
+    meta.setAttribute("class", "node-meta");
+    meta.textContent = nodeMeta(node);
+    const idText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    idText.setAttribute("x", String(node.x + 14));
+    idText.setAttribute("y", String(node.y + NODE_HEIGHT - 14));
+    idText.setAttribute("class", "node-id");
+    idText.textContent = truncate(node.id, 24);
     g.appendChild(rect);
-    g.appendChild(text);
+    g.appendChild(badge);
+    g.appendChild(badgeText);
+    g.appendChild(title);
+    g.appendChild(meta);
+    g.appendChild(chip);
+    g.appendChild(chipLabel);
+    g.appendChild(idText);
     svg.appendChild(g);
   });
 
@@ -490,6 +582,9 @@ function setupReplay(replay) {
   const stepsEl = document.getElementById("replaySteps");
   const scenariosEl = document.getElementById("replayScenarios");
   const canvas = document.querySelector(".graph__canvas");
+  const flowGraph = document.getElementById("flowGraph");
+  const followToggle = document.getElementById("followCameraToggle");
+  const minimapHost = document.getElementById("graphMinimap");
   const scenarioContexts = document.getElementById("scenarioContexts");
   const scenarioProviders = document.getElementById("scenarioProviders");
   const scenarioOutput = document.getElementById("scenarioOutput");
@@ -510,9 +605,16 @@ function setupReplay(replay) {
   let timer = null;
   let idx = 0;
   let currentScenarioId = null;
+  let currentStepNodes = [];
   const revealedNodes = new Set();
   const revealedEdges = new Set();
   let autoRunTimer = null;
+  let followMode = true;
+  let baseView = null;
+  let currentView = null;
+  let cameraAnim = null;
+  let minimapModel = null;
+  let nodeLayout = new Map();
 
   if (canvas) canvas.classList.remove("replay");
 
@@ -520,6 +622,154 @@ function setupReplay(replay) {
     ? replay.scenarios
     : [{ id: "default", label: "All steps", steps: replay.steps }];
   const syntheticEdges = buildSyntheticEdges(replay);
+
+  const parseViewBox = (value) => {
+    const parts = String(value || "")
+      .trim()
+      .split(/\s+/)
+      .map(Number);
+    if (parts.length !== 4 || parts.some((n) => !Number.isFinite(n))) return null;
+    return { x: parts[0], y: parts[1], width: parts[2], height: parts[3] };
+  };
+
+  const setViewBox = (box) => {
+    if (!flowGraph || !box) return;
+    flowGraph.setAttribute("viewBox", `${box.x} ${box.y} ${box.width} ${box.height}`);
+    currentView = { ...box };
+  };
+
+  const animateViewTo = (target, duration = 520) => {
+    if (!flowGraph || !target) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const from = currentView || parseViewBox(flowGraph.getAttribute("viewBox")) || target;
+    if (reduceMotion) {
+      setViewBox(target);
+      return;
+    }
+    if (cameraAnim) cancelAnimationFrame(cameraAnim);
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setViewBox({
+        x: from.x + (target.x - from.x) * eased,
+        y: from.y + (target.y - from.y) * eased,
+        width: from.width + (target.width - from.width) * eased,
+        height: from.height + (target.height - from.height) * eased,
+      });
+      if (t < 1) cameraAnim = requestAnimationFrame(tick);
+      else cameraAnim = null;
+    };
+    cameraAnim = requestAnimationFrame(tick);
+  };
+
+  const buildMiniMap = () => {
+    if (!minimapHost || !flowGraph || !nodeLayout.size) return;
+    const allNodes = [...nodeLayout.values()];
+    const minX = Math.min(...allNodes.map((n) => n.x));
+    const minY = Math.min(...allNodes.map((n) => n.y));
+    const maxX = Math.max(...allNodes.map((n) => n.x + n.width));
+    const maxY = Math.max(...allNodes.map((n) => n.y + n.height));
+    const spanX = Math.max(1, maxX - minX);
+    const spanY = Math.max(1, maxY - minY);
+    const scaleX = 160 / spanX;
+    const scaleY = 92 / spanY;
+    const scale = Math.min(scaleX, scaleY);
+    const offsetX = (160 - spanX * scale) / 2;
+    const offsetY = (92 - spanY * scale) / 2;
+
+    minimapHost.innerHTML = "";
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "graph__mini-svg");
+    svg.setAttribute("viewBox", "0 0 160 92");
+    const nodesById = new Map();
+
+    allNodes.forEach((node) => {
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute("class", "graph__mini-node");
+      rect.setAttribute("rx", "2");
+      rect.setAttribute("ry", "2");
+      rect.setAttribute("x", String(offsetX + (node.x - minX) * scale));
+      rect.setAttribute("y", String(offsetY + (node.y - minY) * scale));
+      rect.setAttribute("width", String(Math.max(2, node.width * scale)));
+      rect.setAttribute("height", String(Math.max(2, node.height * scale)));
+      svg.appendChild(rect);
+      nodesById.set(node.id, rect);
+    });
+
+    const viewport = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    viewport.setAttribute("class", "graph__mini-viewport");
+    viewport.setAttribute("rx", "3");
+    viewport.setAttribute("ry", "3");
+    svg.appendChild(viewport);
+    minimapHost.appendChild(svg);
+
+    minimapModel = { nodesById, viewport, minX, minY, maxX, maxY, scale, offsetX, offsetY };
+  };
+
+  const updateMiniMap = (activeIds = [], view = currentView || baseView) => {
+    if (!minimapModel) return;
+    minimapModel.nodesById.forEach((el, id) => {
+      el.classList.toggle("is-active", activeIds.includes(id));
+    });
+    if (!view) return;
+    const vx = minimapModel.offsetX + (view.x - minimapModel.minX) * minimapModel.scale;
+    const vy = minimapModel.offsetY + (view.y - minimapModel.minY) * minimapModel.scale;
+    const vw = view.width * minimapModel.scale;
+    const vh = view.height * minimapModel.scale;
+    minimapModel.viewport.setAttribute("x", String(vx));
+    minimapModel.viewport.setAttribute("y", String(vy));
+    minimapModel.viewport.setAttribute("width", String(Math.max(8, vw)));
+    minimapModel.viewport.setAttribute("height", String(Math.max(8, vh)));
+  };
+
+  const updateFollowToggle = () => {
+    if (!followToggle) return;
+    followToggle.classList.toggle("graph__follow--active", followMode);
+    followToggle.setAttribute("aria-pressed", followMode ? "true" : "false");
+    followToggle.textContent = followMode ? "Follow mode" : "Overview mode";
+  };
+
+  const updateGuidedCamera = (activeNodeIds = []) => {
+    if (!flowGraph) return;
+    if (!baseView) {
+      baseView = parseViewBox(flowGraph.getAttribute("viewBox"));
+      currentView = baseView ? { ...baseView } : null;
+    }
+    if (!baseView) return;
+    if (!followMode || activeNodeIds.length === 0) {
+      animateViewTo(baseView, 560);
+      updateMiniMap(activeNodeIds, baseView);
+      return;
+    }
+    const focusedNodes = activeNodeIds
+      .map((id) => nodeLayout.get(id))
+      .filter(Boolean);
+    if (!focusedNodes.length) {
+      updateMiniMap(activeNodeIds, currentView || baseView);
+      return;
+    }
+    const minX = Math.min(...focusedNodes.map((n) => n.x));
+    const minY = Math.min(...focusedNodes.map((n) => n.y));
+    const maxX = Math.max(...focusedNodes.map((n) => n.x + n.width));
+    const maxY = Math.max(...focusedNodes.map((n) => n.y + n.height));
+    const padX = 220;
+    const padY = 140;
+    const target = {
+      x: minX - padX,
+      y: minY - padY,
+      width: Math.max(baseView.width * 0.42, maxX - minX + padX * 2),
+      height: Math.max(baseView.height * 0.46, maxY - minY + padY * 2),
+    };
+    target.width = Math.min(baseView.width, target.width);
+    target.height = Math.min(baseView.height, target.height);
+    const maxOffsetX = baseView.x + baseView.width - target.width;
+    const maxOffsetY = baseView.y + baseView.height - target.height;
+    target.x = Math.max(baseView.x, Math.min(target.x, maxOffsetX));
+    target.y = Math.max(baseView.y, Math.min(target.y, maxOffsetY));
+    animateViewTo(target, 560);
+    updateMiniMap(activeNodeIds, target);
+  };
 
   const edgeMap = new Map(
     [...(replay.edges || []), ...syntheticEdges].map((edge) => {
@@ -823,6 +1073,8 @@ function setupReplay(replay) {
     });
     const stepEl = stepsEl?.querySelector(`[data-step="${stepIndex}"]`);
     if (stepEl) stepEl.classList.add("graph__step--active");
+    currentStepNodes = [...stepNodes];
+    updateGuidedCamera(currentStepNodes);
     if (status) status.textContent = `${stepIndex + 1}/${steps.length} • ${step.event || "step"}`;
   };
 
@@ -887,6 +1139,25 @@ function setupReplay(replay) {
   renderSteps();
   if (status) status.textContent = "auto replay";
   dimAll();
+  nodeLayout = new Map(
+    Array.from(flowGraph?.querySelectorAll("rect[data-node-id]") || []).map((el) => [
+      el.getAttribute("data-node-id"),
+      {
+        id: el.getAttribute("data-node-id"),
+        x: Number(el.getAttribute("x")) || 0,
+        y: Number(el.getAttribute("y")) || 0,
+        width: Number(el.getAttribute("width")) || 238,
+        height: Number(el.getAttribute("height")) || 108,
+      },
+    ])
+  );
+  buildMiniMap();
+  updateFollowToggle();
+  bind(followToggle, "click", () => {
+    followMode = !followMode;
+    updateFollowToggle();
+    updateGuidedCamera(currentStepNodes);
+  });
   currentScenarioId = scenarios[0]?.id || "default";
   renderScenarioChips();
   renderSwitches();
@@ -894,6 +1165,7 @@ function setupReplay(replay) {
 
   window.__hiwiReplayCleanup = () => {
     clearTimer();
+    if (cameraAnim) cancelAnimationFrame(cameraAnim);
     if (autoRunTimer) clearTimeout(autoRunTimer);
     cleanupFns.forEach((fn) => fn());
   };
@@ -1264,6 +1536,21 @@ function initChapters() {
   );
 
   chapters.forEach((section) => observer.observe(section));
+
+  const activateHashChapter = () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    if (target.matches("[data-chapter]")) {
+      target.classList.add("is-live");
+    } else {
+      target.closest("[data-chapter]")?.classList.add("is-live");
+    }
+  };
+
+  activateHashChapter();
+  window.addEventListener("hashchange", activateHashChapter);
 }
 
 function initEcsVisual() {

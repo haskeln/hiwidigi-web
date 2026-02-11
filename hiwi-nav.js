@@ -5,7 +5,12 @@
   const brand = nav.querySelector(".nav__brand");
   if (brand) {
     brand.setAttribute("href", "./index.html");
-    brand.textContent = "Hiwi";
+    brand.innerHTML = `
+      <span class="nav__brand-mark" aria-hidden="true">
+        <img class="nav__brand-img" src="./hiwi-logo.png" alt="" loading="eager" decoding="async" />
+      </span>
+      <span class="nav__brand-word">Hiwi</span>
+    `;
   }
 
   const links = nav.querySelector(".nav__links");

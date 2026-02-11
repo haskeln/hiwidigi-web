@@ -53,11 +53,38 @@ body.apple {
 }
 
 .nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
   color: var(--text);
   font-weight: 700;
   letter-spacing: -0.02em;
   font-size: 1.1rem;
+}
+
+.nav__brand-mark {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(245, 246, 251, 0.96);
+  border: 1px solid rgba(16, 18, 38, 0.18);
+  box-shadow: 0 8px 16px rgba(47, 55, 96, 0.12);
+  overflow: hidden;
+}
+
+.nav__brand-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nav__brand-word {
+  line-height: 1;
 }
 
 .nav__links {
@@ -200,6 +227,11 @@ body.apple {
 
 .section {
   margin-top: 60px;
+}
+
+.section,
+.launch-api {
+  scroll-margin-top: 92px;
 }
 
 .section__title {
@@ -426,6 +458,41 @@ body.apple {
   color: var(--muted);
 }
 
+.graph__follow {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(111, 123, 255, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  color: #4552a8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.graph__follow--active {
+  border-color: rgba(88, 213, 198, 0.5);
+  color: #205f7f;
+  background: linear-gradient(135deg, rgba(88, 213, 198, 0.2), rgba(111, 123, 255, 0.16));
+}
+
+.graph__lanes {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.graph__lanes span {
+  border-radius: 10px;
+  border: 1px solid rgba(111, 123, 255, 0.16);
+  padding: 5px 8px;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: #53608f;
+  background: rgba(255, 255, 255, 0.72);
+}
+
 .graph__canvas {
   margin-top: 14px;
   position: relative;
@@ -448,17 +515,54 @@ body.apple {
 #flowGraph {
   display: block;
   width: 100%;
-  height: clamp(360px, 56vw, 620px);
-  max-height: 72vh;
+  height: clamp(520px, 70vh, 860px);
+  max-height: 82vh;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 14px;
   shape-rendering: geometricPrecision;
+  transition: filter 280ms ease;
+}
+
+.graph__minimap {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 170px;
+  height: 108px;
+  border-radius: 14px;
+  border: 1px solid rgba(111, 123, 255, 0.2);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 24px rgba(47, 55, 96, 0.12);
+  padding: 6px;
+  z-index: 3;
+}
+
+.graph__mini-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.graph__mini-node {
+  fill: rgba(111, 123, 255, 0.25);
+}
+
+.graph__mini-node.is-active {
+  fill: rgba(88, 213, 198, 0.92);
+}
+
+.graph__mini-viewport {
+  fill: rgba(88, 213, 198, 0.14);
+  stroke: rgba(32, 95, 127, 0.55);
+  stroke-width: 1.2;
 }
 
 .node {
-  fill: rgba(255, 255, 255, 0.92);
-  stroke: rgba(79, 91, 255, 0.18);
-  filter: drop-shadow(0 10px 24px rgba(111, 123, 255, 0.12));
+  fill: rgba(250, 251, 255, 0.96);
+  stroke: rgba(79, 91, 255, 0.22);
+  stroke-width: 1.35px;
+  filter: drop-shadow(0 12px 24px rgba(111, 123, 255, 0.12));
   transition: stroke 180ms ease, filter 180ms ease, opacity 180ms ease;
 }
 
@@ -480,6 +584,78 @@ body.apple {
 
 .node--outcome {
   stroke: rgba(111, 221, 140, 0.7);
+}
+
+.node-kind {
+  fill: rgba(244, 247, 255, 0.95);
+  stroke: rgba(130, 142, 255, 0.35);
+  stroke-width: 1;
+}
+
+.node-kind__label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  fill: #445099;
+}
+
+.node-kind--intent {
+  fill: rgba(120, 128, 255, 0.14);
+  stroke: rgba(111, 123, 255, 0.55);
+}
+
+.node-kind--policy {
+  fill: rgba(255, 202, 115, 0.16);
+  stroke: rgba(255, 183, 77, 0.6);
+}
+
+.node-kind--vertical {
+  fill: rgba(120, 230, 213, 0.16);
+  stroke: rgba(88, 213, 198, 0.6);
+}
+
+.node-kind--capability {
+  fill: rgba(149, 132, 255, 0.15);
+  stroke: rgba(132, 116, 255, 0.6);
+}
+
+.node-kind--outcome {
+  fill: rgba(140, 230, 165, 0.18);
+  stroke: rgba(111, 221, 140, 0.72);
+}
+
+.node-source {
+  fill: rgba(255, 255, 255, 0.92);
+  stroke: rgba(111, 123, 255, 0.24);
+  stroke-width: 1;
+}
+
+.node-source__label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  fill: #566197;
+}
+
+.node-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  fill: #20274d;
+}
+
+.node-meta {
+  font-size: 11.5px;
+  font-weight: 500;
+  fill: #54618c;
+}
+
+.node-id {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  fill: rgba(84, 96, 142, 0.86);
 }
 
 .edge {
@@ -2692,6 +2868,21 @@ body.apple {
   .chapter--demo .chapter__visual,
   .chapter--demo-graph .chapter__visual {
     min-height: auto;
+  }
+
+  .graph__lanes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .graph__minimap {
+    width: 136px;
+    height: 92px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  #flowGraph {
+    height: clamp(420px, 66vh, 640px);
   }
 
   .eventlog__stream {
