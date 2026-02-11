@@ -3,95 +3,89 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hiwi — What's new</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=22" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Hiwi - Deterministic Workflow Orchestration</title>
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=55" />
   </head>
   <body class="apple">
     <main class="page">
       <nav class="nav">
-        <div class="nav__brand">Hiwi</div>
+        <a class="nav__brand" href="./index.html">Hiwi</a>
         <div class="nav__links">
           <a href="./core.html">Hiwi Core</a>
-          <a href="./huxen.html">Hiwi HUXEN</a>
-          <a href="./himl.html" class="nav__soon">HIML <span>Coming soon</span></a>
+          <a href="./huxen.html">HUXEN</a>
+          <a href="./himl.html">HIML</a>
+          <a href="./core.html#api">API</a>
           <a href="./core.html#demo">Live Demo</a>
-          <a href="#waitlist" class="nav__cta">Join waitlist</a>
+          <a href="./index.html#waitlist" class="nav__cta">Join waitlist</a>
         </div>
       </nav>
 
       <header class="hero hero--apple" id="overview">
-        <div class="hero__tag">What’s new</div>
-        <h1>Hiwi makes complex intent feel natural.</h1>
+        <div class="hero__tag">Hiwi Platform</div>
+        <h1>Deterministic orchestration for context-heavy SaaS workflows.</h1>
         <p class="hero__lead">
-          Deterministic orchestration at the core, a human interface layer on top, and a DSL that feels as
-          gentle as it is powerful.
+          Hiwi Core resolves intent into deterministic execution paths. HUXEN/HUE turns schemas into working
+          backoffice systems on top of that orchestration layer.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="./core.html">Explore Hiwi Core</a>
-          <a class="btn btn--ghost" href="#waitlist">Join the waitlist</a>
+          <a class="btn btn--primary" href="./core.html#problem">See Core story</a>
+          <a class="btn btn--ghost" href="./core.html#demo">Open live demo</a>
         </div>
       </header>
 
-      <section class="section feature" id="experience">
-        <article class="feature-panel">
-          <div class="feature-panel__copy">
-            <h2>Hiwi Core</h2>
-            <p>Deterministic intent resolution, policy-safe, observable, and swappable — the engine.</p>
-          </div>
-          <div class="feature-panel__demo">
-            <div class="mini-result">Deterministic orchestration</div>
-            <div class="mini-path">
-              <span>intent</span>
-              <span>policy</span>
-              <span>capability</span>
-              <span>execution</span>
-            </div>
-          </div>
+      <section class="section overview">
+        <article class="overview__panel">
+          <h2>Hiwi Core</h2>
+          <p>Intent resolution, policy gates, capability selection, and auditable execution traces.</p>
         </article>
+        <article class="overview__panel">
+          <h2>HUXEN / HUE</h2>
+          <p>Schema-driven engine that generates scalable backoffice products and orchestrates via Hiwi.</p>
+        </article>
+        <article class="overview__panel">
+          <h2>Why now</h2>
+          <p>Integration complexity is growing faster than startup teams can maintain custom logic safely.</p>
+        </article>
+      </section>
 
-        <article class="feature-panel">
-          <div class="feature-panel__copy">
-            <h2>Hiwi HUXEN</h2>
-            <p>Interface engine that turns intent into human-first journeys. Calm, adaptive, beautiful.</p>
+      <section class="section storyboard">
+        <div class="storyboard__copy">
+          <h2>What to review first</h2>
+          <p>
+            Start on Hiwi Core for problem, moat, and API quickstart. Then run the live demo to see
+            context switches, capability graph replay, and event trace exports.
+          </p>
+          <div class="storyboard__actions">
+            <a class="btn btn--primary" href="./core.html#problem">Core narrative</a>
+            <a class="btn btn--ghost" href="./core.html#demo">Run deterministic demo</a>
           </div>
-          <div class="feature-panel__demo">
-            <div class="mini-result">Design once · Ship everywhere</div>
-            <div class="mini-path">
-              <span>UI rules</span>
-              <span>layouts</span>
-              <span>flows</span>
-            </div>
+        </div>
+        <div class="storyboard__visual">
+          <div class="storyboard__glass">
+            <div class="storyboard__chip">Intent</div>
+            <div class="storyboard__chip">Constraints</div>
+            <div class="storyboard__chip">Capabilities</div>
+            <div class="storyboard__chip">Outcome</div>
           </div>
-        </article>
-
-        <article class="feature-panel">
-          <div class="feature-panel__copy">
-            <h2>HIML</h2>
-            <p>Inspired by YAML and Himmel: human-readable DSL for intent plans. Coming soon.</p>
-          </div>
-          <div class="feature-panel__demo">
-            <div class="mini-result">Readable · Elegant · Precise</div>
-            <div class="mini-path">
-              <span>hml</span>
-              <span>intent</span>
-              <span>rules</span>
-            </div>
-          </div>
-        </article>
+        </div>
       </section>
 
       <section class="section waitlist" id="waitlist">
         <div>
-          <h2>Join the waitlist</h2>
-          <p>Be first to access Hiwi Core, HUXEN, and HIML.</p>
+          <h2>Request pilot access</h2>
+          <p>We are onboarding design partners building multi-region SaaS products.</p>
         </div>
-        <a class="btn btn--primary" href="https://forms.gle/8jUyykeKEeq7VK9Z8" target="_blank" rel="noreferrer">Join waitlist</a>
+        <a class="btn btn--primary" href="https://forms.gle/8jUyykeKEeq7VK9Z8" target="_blank" rel="noreferrer">Request pilot</a>
       </section>
 
       <footer class="footer">
         <span>© 2026 Hiwi</span>
-        <span>Deterministic intent orchestration</span>
+        <span>Deterministic workflow orchestration</span>
       </footer>
     </main>
+    <script src="./hiwi-nav.js?v=4"></script>
   </body>
 </html>

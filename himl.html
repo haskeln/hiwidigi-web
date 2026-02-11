@@ -3,18 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>HIML — Hiwi Intent Markup Language</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=22" />
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=55" />
   </head>
   <body class="apple">
     <main class="page">
       <nav class="nav">
-        <div class="nav__brand">Hiwi</div>
+        <a class="nav__brand" href="./index.html">Hiwi</a>
         <div class="nav__links">
-          <a href="./index.html">Overview</a>
           <a href="./core.html">Hiwi Core</a>
-          <a href="./huxen.html">Hiwi HUXEN</a>
-          <a href="./himl.html" class="nav__soon">HIML <span>Coming soon</span></a>
+          <a href="./huxen.html">HUXEN</a>
+          <a href="./himl.html">HIML</a>
+          <a href="./core.html#api">API</a>
           <a href="./core.html#demo">Live Demo</a>
           <a href="./index.html#waitlist" class="nav__cta">Join waitlist</a>
         </div>
@@ -33,11 +36,11 @@
         </div>
       </header>
 
-      <section class="section feature">
-        <article class="feature-panel">
+      <section class="section feature feature--peek" id="experience">
+        <article class="feature-panel feature-panel--peek">
           <div class="feature-panel__copy">
-            <h2>Human-readable intent</h2>
-            <p>Define workflows the way people think: clear, concise, and safe to change.</p>
+            <h2>Human‑readable intent</h2>
+            <p>Write workflows that feel like natural language, not brittle configuration.</p>
           </div>
           <div class="feature-panel__demo">
             <div class="mini-result">himmel: true</div>
@@ -48,10 +51,10 @@
             </div>
           </div>
         </article>
-        <article class="feature-panel">
+        <article class="feature-panel feature-panel--peek">
           <div class="feature-panel__copy">
-            <h2>Deterministic by design</h2>
-            <p>Every line in HIML maps to a predictable decision in Hiwi Core.</p>
+            <h2>Deterministic mapping</h2>
+            <p>Every line maps to a predictable decision in Hiwi Core.</p>
           </div>
           <div class="feature-panel__demo">
             <div class="mini-result">Predictable + auditable</div>
@@ -62,12 +65,34 @@
             </div>
           </div>
         </article>
+        <article class="feature-panel feature-panel--peek">
+          <div class="feature-panel__copy">
+            <h2>Himmel‑level clarity</h2>
+            <p>As clean and beautiful as YAML, but purpose‑built for intent.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <div class="mini-result">Readable · Elegant · Precise</div>
+            <div class="mini-path">
+              <span>plans</span>
+              <span>guards</span>
+              <span>routes</span>
+            </div>
+          </div>
+        </article>
+        <div class="peek-overlay">
+          <div class="peek-overlay__card">
+            <div class="peek-overlay__badge">Private Beta Preview</div>
+            <h2>HIML syntax preview is locked.</h2>
+            <p>Join the waitlist to unlock the language guide, private examples, and compiler walkthrough.</p>
+            <a class="btn btn--primary" href="./index.html#waitlist">Join Early Access</a>
+          </div>
+        </div>
       </section>
 
       <section class="section waitlist" id="waitlist">
         <div>
-          <h2>HIML is coming soon</h2>
-          <p>Be the first to access Hiwi’s DSL.</p>
+          <h2>Unlock the full HIML docs</h2>
+          <p>Join the waitlist to get full language specification and private preview examples.</p>
         </div>
         <a class="btn btn--primary" href="https://forms.gle/8jUyykeKEeq7VK9Z8" target="_blank" rel="noreferrer">Join waitlist</a>
       </section>
@@ -77,5 +102,6 @@
         <span>HIML (coming soon)</span>
       </footer>
     </main>
+    <script src="./hiwi-nav.js?v=4"></script>
   </body>
 </html>

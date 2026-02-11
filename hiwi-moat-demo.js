@@ -76,6 +76,52 @@ async function loadJson(path, fallback) {
   }
 }
 
+function buildSyntheticEdges(replay) {
+  const nodes = replay?.nodes || [];
+  const edges = replay?.edges || [];
+  if (!nodes.length || !edges.length) return [];
+
+  const successNodeId =
+    nodes.find((n) => n.group === "outcome" && n.label?.toLowerCase().includes("success"))?.id ||
+    nodes.find((n) => n.label?.toLowerCase?.().includes("success"))?.id ||
+    "outcome.success";
+
+  const executedCapabilityIds = new Set();
+  (replay?.steps || []).forEach((step) => {
+    (step.nodes || []).forEach((nodeId) => executedCapabilityIds.add(nodeId));
+  });
+
+  const nodeById = new Map(nodes.map((n) => [n.id, n]));
+  const synthetic = [];
+
+  executedCapabilityIds.forEach((nodeId) => {
+    const node = nodeById.get(nodeId);
+    if (!node || node.group !== "capability") return;
+    const edgeId = `e.synthetic.${nodeId}.success`;
+    const exists = edges.some(
+      (edge) => (edge.id || `edge-${edge.from}-${edge.to}`) === edgeId || (edge.from === nodeId && edge.to === successNodeId)
+    );
+    if (!exists) synthetic.push({ id: edgeId, from: nodeId, to: successNodeId, synthetic: true });
+  });
+
+  return synthetic;
+}
+
+async function postScenarioRun(scenarioId) {
+  const apiBase = window.location.hostname.includes("hiwidigi.com")
+    ? "https://api.hiwidigi.com"
+    : "http://localhost:5174";
+  const res = await fetch(`${apiBase}/run-intent`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ scenarioId }),
+  });
+  if (!res.ok) throw new Error(`run-intent failed: ${res.status}`);
+  const contentType = res.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) return null;
+  return res.json();
+}
+
 function pct(num) {
   return `${(num * 100).toFixed(1)}%`;
 }
@@ -95,13 +141,18 @@ function renderKpis(report, runs) {
 
   const fastSuccessRate = fast.count ? fast.success / fast.count : 0;
   const slowSuccessRate = slow.count ? slow.success / slow.count : 0;
+  const recent = Array.isArray(runs) ? runs.slice(-12) : [];
+  const recentSuccess = recent.length ? recent.filter((r) => r.success).length / recent.length : 0;
+  const providers = new Set(
+    (runs || [])
+      .map((r) => r?.capabilities?.payment)
+      .filter(Boolean)
+  );
 
-  setText('[data-kpi="fastSuccess"]', pct(fastSuccessRate));
-  setText('[data-kpi="slowSuccess"]', pct(slowSuccessRate));
-  setText('[data-kpi="fastDuration"]', formatMs(fast.avgDurationMs || 0));
-  setText('[data-kpi="slowDuration"]', formatMs(slow.avgDurationMs || 0));
-  setText('[data-kpi="fastCost"]', `$${(report.fastProvider?.totalCost || 0).toFixed(3)}`);
-  setText('[data-kpi="slowCost"]', `$${(report.slowProvider?.totalCost || 0).toFixed(3)}`);
+  setText('[data-kpi="normalSuccess"]', pct(fastSuccessRate));
+  setText('[data-kpi="strictSuccess"]', pct(slowSuccessRate));
+  setText('[data-kpi="runReliability"]', pct(recentSuccess));
+  setText('[data-kpi="providerFlex"]', `${providers.size || 1} providers`);
 
   const barFast = $("#barFast");
   const barSlow = $("#barSlow");
@@ -132,11 +183,20 @@ function renderTimeline(runs) {
   const target = $("#timeline");
   if (!target) return;
   const items = runs.slice(-10).reverse();
+  const providerLabel = {
+    fast: "optimized path",
+    slow: "constraint-heavy path",
+    deterministic: "deterministic path",
+  };
+  const normalizeLabel = (value = "") =>
+    value
+      .replace(/\bFast\b/gi, "Optimized")
+      .replace(/\bSlow\b/gi, "Constraint-heavy");
   target.innerHTML = items
     .map(
       (r) => `
       <div class="timeline__item">
-        ${r.label} • ${r.provider} • ${r.success ? "success" : "fail"}
+        ${normalizeLabel(r.label || "Run")} • ${providerLabel[r.provider] || r.provider || "path"} • ${r.success ? "success" : "fail"}
         <span>${r.capabilities.payment || "none"} → ${r.capabilities.notification || "none"}</span>
       </div>
     `
@@ -144,7 +204,7 @@ function renderTimeline(runs) {
     .join("");
 }
 
-function renderGraph(runs, replay) {
+async function renderGraph(runs, replay) {
   const svg = $("#flowGraph");
   if (!svg) return;
 
@@ -169,6 +229,8 @@ function renderGraph(runs, replay) {
         { id: "e.cap.provider", from: "capPayment", to: "provider" },
         { id: "e.cap.provider2", from: "capNotify", to: "provider" },
       ];
+  const syntheticEdges = buildSyntheticEdges(replay);
+  const allEdges = edges.concat(syntheticEdges);
 
   const spread = replay?.layoutScale || (baseNodes.length > 12 ? 1.15 : 1);
   let nodeData = baseNodes.map((node) => ({
@@ -239,29 +301,101 @@ function renderGraph(runs, replay) {
     });
     nodeData = layout;
   }
+  let elkLayout = null;
+  if (window.ELK && replay?.layoutMode !== "manual") {
+    try {
+      const elk = new window.ELK();
+      elkLayout = await elk.layout({
+        id: "root",
+        layoutOptions: {
+          "elk.algorithm": "layered",
+          "elk.direction": "RIGHT",
+          "elk.spacing.nodeNode": "60",
+          "elk.layered.spacing.nodeNodeBetweenLayers": "90",
+          "elk.layered.nodePlacement.strategy": "NETWORK_SIMPLEX",
+          "elk.edgeRouting": "ORTHOGONAL",
+        },
+        children: nodeData.map((node) => ({
+          id: node.id,
+          width: 160,
+          height: 40,
+        })),
+        edges: edges.map((edge) => ({
+          id: edge.id || `edge-${edge.from}-${edge.to}`,
+          sources: [edge.from],
+          targets: [edge.to],
+        })),
+      });
+    } catch (err) {
+      elkLayout = null;
+    }
+  }
+  if (elkLayout?.children?.length) {
+    const byId = new Map(elkLayout.children.map((n) => [n.id, n]));
+    nodeData = nodeData.map((node) => {
+      const layoutNode = byId.get(node.id);
+      return layoutNode
+        ? {
+            ...node,
+            x: layoutNode.x ?? node.x,
+            y: layoutNode.y ?? node.y,
+          }
+        : node;
+    });
+  }
 
   svg.innerHTML = "";
 
-  let maxX = 0;
-  let maxY = 0;
+  let minNodeX = Infinity;
+  let minNodeY = Infinity;
+  let maxNodeX = 0;
+  let maxNodeY = 0;
   nodeData.forEach((node) => {
-    maxX = Math.max(maxX, node.x + 200);
-    maxY = Math.max(maxY, node.y + 120);
+    minNodeX = Math.min(minNodeX, node.x);
+    minNodeY = Math.min(minNodeY, node.y);
+    maxNodeX = Math.max(maxNodeX, node.x + 160);
+    maxNodeY = Math.max(maxNodeY, node.y + 40);
   });
-  svg.setAttribute("viewBox", `0 0 ${Math.max(980, maxX)} ${Math.max(680, maxY)}`);
+  const padX = 130;
+  const padY = 90;
+  const minX = minNodeX - padX;
+  const minY = minNodeY - padY;
+  const width = Math.max(760, maxNodeX - minNodeX + padX * 2);
+  const height = Math.max(520, maxNodeY - minNodeY + padY * 2);
+  svg.setAttribute("viewBox", `${minX} ${minY} ${width} ${height}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
-  edges.forEach((edge) => {
+  const edgeSections = new Map();
+  if (elkLayout?.edges?.length) {
+    elkLayout.edges.forEach((edge) => {
+      if (edge.sections && edge.sections.length) {
+        edgeSections.set(edge.id, edge.sections[0]);
+      }
+    });
+  }
+
+  allEdges.forEach((edge) => {
     const from = nodeData.find((n) => n.id === edge.from);
     const to = nodeData.find((n) => n.id === edge.to);
     if (!from || !to) return;
     const edgeId = edge.id || `edge-${edge.from}-${edge.to}`;
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    const midX = (from.x + to.x) / 2;
-    path.setAttribute(
-      "d",
-      `M ${from.x + 160} ${from.y + 20} C ${midX} ${from.y + 20}, ${midX} ${to.y + 20}, ${to.x} ${to.y + 20}`
-    );
-    path.setAttribute("class", "edge");
+    const section = edgeSections.get(edgeId);
+    if (section) {
+      const points = [section.startPoint, ...(section.bendPoints || []), section.endPoint];
+      const d = points
+        .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p.x} ${p.y}`)
+        .join(" ");
+      path.setAttribute("d", d);
+    } else {
+      const midX = (from.x + to.x) / 2;
+      const midY = (from.y + to.y) / 2;
+      path.setAttribute(
+        "d",
+        `M ${from.x + 160} ${from.y + 20} Q ${midX} ${midY}, ${to.x} ${to.y + 20}`
+      );
+    }
+    path.setAttribute("class", `edge${edge.synthetic ? " edge--synthetic" : ""}`);
     path.setAttribute("data-edge-id", edgeId);
     svg.appendChild(path);
   });
@@ -275,9 +409,18 @@ function renderGraph(runs, replay) {
     rect.setAttribute("ry", "14");
     rect.setAttribute("width", "160");
     rect.setAttribute("height", "40");
-    rect.setAttribute("class", `node${node.accent ? " node--accent" : ""}${node.warn ? " node--warn" : ""}`);
+    const typeClass = node.group ? ` node--${node.group}` : "";
+    rect.setAttribute(
+      "class",
+      `node${typeClass}${node.accent ? " node--accent" : ""}${node.warn ? " node--warn" : ""}`
+    );
     rect.setAttribute("data-node-id", node.id);
     if (node.info) rect.setAttribute("data-node-info", node.info);
+    else if (node.label) rect.setAttribute("data-node-info", node.label);
+    if (node.group) rect.setAttribute("data-node-group", node.group);
+    if (node.provider) rect.setAttribute("data-node-provider", node.provider);
+    if (node.verbs) rect.setAttribute("data-node-verbs", (node.verbs || []).join(", "));
+    if (node.constraints) rect.setAttribute("data-node-constraints", (node.constraints || []).length.toString());
     const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     text.setAttribute("x", node.x + 12);
     text.setAttribute("y", node.y + 26);
@@ -292,8 +435,6 @@ function renderGraph(runs, replay) {
     svg.appendChild(g);
   });
 
-  enablePanZoom(svg);
-  enableTooltip(svg);
 }
 
 async function bootstrap() {
@@ -318,7 +459,7 @@ async function bootstrap() {
 
   renderKpis(report, runs);
   renderTimeline(runs);
-  renderGraph(runs, replay);
+  await renderGraph(runs, replay);
   renderDetails(detail);
   renderEventLog(eventLog);
   setupReplay(replay);
@@ -339,10 +480,12 @@ document.getElementById("ctaCopy")?.addEventListener("click", async () => {
 
 bootstrap();
 initMiniDemos();
+initChapters();
+initEcsVisual();
+initSignalCounters();
+initPinSections();
 
 function setupReplay(replay) {
-  const playBtn = document.getElementById("replayPlay");
-  const pauseBtn = document.getElementById("replayPause");
   const status = document.getElementById("replayStatus");
   const stepsEl = document.getElementById("replaySteps");
   const scenariosEl = document.getElementById("replayScenarios");
@@ -350,7 +493,14 @@ function setupReplay(replay) {
   const scenarioContexts = document.getElementById("scenarioContexts");
   const scenarioProviders = document.getElementById("scenarioProviders");
   const scenarioOutput = document.getElementById("scenarioOutput");
-  const scenarioRun = document.getElementById("scenarioRun");
+
+  if (window.__hiwiReplayCleanup) window.__hiwiReplayCleanup();
+  const cleanupFns = [];
+  const bind = (el, event, handler) => {
+    if (!el) return;
+    el.addEventListener(event, handler);
+    cleanupFns.push(() => el.removeEventListener(event, handler));
+  };
 
   if (!replay || !replay.steps || replay.steps.length === 0) {
     if (status) status.textContent = "no replay data";
@@ -360,16 +510,109 @@ function setupReplay(replay) {
   let timer = null;
   let idx = 0;
   let currentScenarioId = null;
+  const revealedNodes = new Set();
+  const revealedEdges = new Set();
+  let autoRunTimer = null;
 
   if (canvas) canvas.classList.remove("replay");
 
   const scenarios = Array.isArray(replay.scenarios) && replay.scenarios.length
     ? replay.scenarios
     : [{ id: "default", label: "All steps", steps: replay.steps }];
+  const syntheticEdges = buildSyntheticEdges(replay);
+
+  const edgeMap = new Map(
+    [...(replay.edges || []), ...syntheticEdges].map((edge) => {
+      const edgeId = edge.id || `edge-${edge.from}-${edge.to}`;
+      return [edgeId, edge];
+    })
+  );
+  const nodeMap = new Map((replay.nodes || []).map((n) => [n.id, n]));
+  const rootId =
+    (replay.nodes || []).find((n) => n.group === "intent")?.id ||
+    (replay.nodes || []).reduce((best, node) => (best && best.x <= node.x ? best : node), null)?.id;
+  const parentEdgeForNode = new Map();
+  (replay.edges || []).forEach((edge) => {
+    const edgeId = edge.id || `edge-${edge.from}-${edge.to}`;
+    const fromNode = nodeMap.get(edge.from);
+    const existing = parentEdgeForNode.get(edge.to);
+    if (!existing) {
+      parentEdgeForNode.set(edge.to, edgeId);
+      return;
+    }
+    const existingEdge = edgeMap.get(existing);
+    const existingFrom = existingEdge ? nodeMap.get(existingEdge.from) : null;
+    const fromX = fromNode?.x ?? 0;
+    const existingX = existingFrom?.x ?? 0;
+    if (fromX < existingX) parentEdgeForNode.set(edge.to, edgeId);
+  });
+
+  const buildFlowSteps = (rawSteps) => {
+    const steps = rawSteps || [];
+    const nodeById = new Map((replay.nodes || []).map((n) => [n.id, n]));
+    const activeNodes = new Set();
+    const activeEdges = new Set();
+    steps.forEach((step) => {
+      (step.nodes || []).forEach((id) => activeNodes.add(id));
+      (step.edges || []).forEach((edgeId) => activeEdges.add(edgeId));
+    });
+
+    const edges = [...activeEdges].map((edgeId) => edgeMap.get(edgeId)).filter(Boolean);
+    if (!edges.length) return steps;
+
+    const incoming = new Map();
+    edges.forEach((edge) => {
+      if (!incoming.has(edge.to)) incoming.set(edge.to, []);
+      incoming.get(edge.to).push(edge.from);
+    });
+
+    const rootCandidates = (replay.nodes || []).filter((n) => n.group === "intent").map((n) => n.id);
+    const root = rootCandidates[0] || edges[0].from;
+
+    const revealed = new Set([root]);
+    const sequence = [];
+    const remainingEdges = new Set(edges.map((e) => e.id || `edge-${e.from}-${e.to}`));
+
+    const edgeById = new Map(edges.map((e) => [e.id || `edge-${e.from}-${e.to}`, e]));
+
+    const pickNext = () => {
+      const candidates = [];
+      remainingEdges.forEach((edgeId) => {
+        const edge = edgeById.get(edgeId);
+        if (edge && revealed.has(edge.from) && !revealed.has(edge.to)) {
+          const toNode = nodeById.get(edge.to);
+          candidates.push({
+            edgeId,
+            edge,
+            x: toNode?.x ?? 0,
+            y: toNode?.y ?? 0,
+          });
+        }
+      });
+      candidates.sort((a, b) => (a.x === b.x ? a.y - b.y : a.x - b.x));
+      return candidates[0];
+    };
+
+    let next;
+    while ((next = pickNext())) {
+      remainingEdges.delete(next.edgeId);
+      revealed.add(next.edge.to);
+      sequence.push({
+        label: "flow.step",
+        nodes: [next.edge.from, next.edge.to],
+        edges: [next.edgeId],
+        event: "flow.step",
+      });
+    }
+
+    if (!sequence.length) return steps;
+    return sequence;
+  };
 
   const getSteps = () => {
     const scenario = scenarios.find((s) => s.id === currentScenarioId) || scenarios[0];
-    return scenario.steps || replay.steps;
+    const raw = scenario.steps || replay.steps || [];
+    return raw;
   };
 
   const renderScenarioChips = () => {
@@ -381,18 +624,39 @@ function setupReplay(replay) {
       )
       .join("");
     scenariosEl.querySelectorAll("[data-scenario]").forEach((btn) => {
-      btn.addEventListener("click", () => {
+      bind(btn, "click", () => {
         const id = btn.getAttribute("data-scenario");
         currentScenarioId = id;
         renderScenarioChips();
-        idx = 0;
-        applyStep(0);
-        if (status) status.textContent = "ready";
+        restartLoop();
       });
     });
   };
 
   let activeScenarioId = null;
+  const runScenario = (scenarioId) => {
+    if (!scenarioId) {
+      idx = 0;
+      restartLoop();
+      return;
+    }
+    if (status) status.textContent = "running…";
+    postScenarioRun(scenarioId)
+      .then(() => {
+        idx = 0;
+        if (typeof bootstrap === "function") bootstrap();
+      })
+      .catch(() => {
+        idx = 0;
+        restartLoop();
+      });
+  };
+
+  const queueScenarioRun = (scenarioId) => {
+    if (autoRunTimer) clearTimeout(autoRunTimer);
+    autoRunTimer = window.setTimeout(() => runScenario(scenarioId), 320);
+  };
+
   const renderSwitches = () => {
     if (!replay.scenarioGroups) return;
     const groups = replay.scenarioGroups;
@@ -404,7 +668,7 @@ function setupReplay(replay) {
             `<button class="graph__chip${index === 0 ? " graph__chip--active" : ""}" data-switch="${item.id}">${item.label}</button>`
         )
         .join("");
-      const setOutput = (item) => {
+      const setOutput = (item, shouldRun = false) => {
         if (!scenarioOutput) return;
         activeScenarioId = item.id;
         scenarioOutput.textContent = [
@@ -418,19 +682,26 @@ function setupReplay(replay) {
           currentScenarioId = item.replayScenarioId;
           renderScenarioChips();
           idx = 0;
+          document.querySelectorAll("[data-node-id]").forEach((n) => n.classList.remove("node--revealed"));
+          document.querySelectorAll("[data-edge-id]").forEach((e) => e.classList.remove("edge--revealed"));
+          document.querySelectorAll(".node-label").forEach((l) => l.classList.remove("node-label--revealed"));
+          revealedNodes.clear();
+          revealedEdges.clear();
+          dimAll();
           applyStep(0);
           if (status) status.textContent = "ready";
         }
+        if (shouldRun) queueScenarioRun(item.id);
       };
       const first = items[0];
-      if (first) setOutput(first);
+      if (first) setOutput(first, false);
       target.querySelectorAll("[data-switch]").forEach((btn) => {
-        btn.addEventListener("click", () => {
+        bind(btn, "click", () => {
           target.querySelectorAll(".graph__chip").forEach((chip) => chip.classList.remove("graph__chip--active"));
           btn.classList.add("graph__chip--active");
           const id = btn.getAttribute("data-switch");
           const item = items.find((it) => it.id === id);
-          if (item) setOutput(item);
+          if (item) setOutput(item, true);
         });
       });
     };
@@ -442,6 +713,23 @@ function setupReplay(replay) {
     document.querySelectorAll("[data-node-id]").forEach((n) => n.classList.add("node--revealed"));
     document.querySelectorAll("[data-edge-id]").forEach((e) => e.classList.add("edge--revealed"));
     document.querySelectorAll(".node-label").forEach((l) => l.classList.add("node-label--revealed"));
+  };
+
+  const dimAll = () => {
+    document.querySelectorAll("[data-node-id]").forEach((n) => n.classList.add("node--dim"));
+    document.querySelectorAll("[data-edge-id]").forEach((e) => e.classList.add("edge--dim"));
+    document.querySelectorAll(".node-label").forEach((l) => l.classList.add("node-label--dim"));
+  };
+
+  const clearDim = (ids, edgeIds) => {
+    ids.forEach((id) => {
+      document.querySelectorAll(`[data-node-id="${id}"]`).forEach((n) => n.classList.remove("node--dim"));
+      document.querySelectorAll(`text[data-node-id="${id}"]`).forEach((l) => l.classList.remove("node-label--dim"));
+    });
+    edgeIds.forEach((edgeId) => {
+      const edge = document.querySelector(`[data-edge-id="${edgeId}"]`);
+      if (edge) edge.classList.remove("edge--dim");
+    });
   };
 
   const clearActive = () => {
@@ -470,7 +758,52 @@ function setupReplay(replay) {
     const step = steps[stepIndex];
     if (!step) return;
     clearActive();
-    step.nodes?.forEach((id) => {
+    const stepNodes = new Set(step.nodes || []);
+    const stepEdges = step.edges || [];
+    stepEdges.forEach((edgeId) => {
+      const edge = edgeMap.get(edgeId);
+      if (edge) {
+        stepNodes.add(edge.from);
+        stepNodes.add(edge.to);
+      }
+    });
+    const includePathTo = (nodeId) => {
+      let current = nodeId;
+      const visited = new Set();
+      while (current && current !== rootId && !visited.has(current)) {
+        visited.add(current);
+        const parentEdgeId = parentEdgeForNode.get(current);
+        if (!parentEdgeId) break;
+        const parentEdge = edgeMap.get(parentEdgeId);
+        if (!parentEdge) break;
+        revealedEdges.add(parentEdgeId);
+        revealedNodes.add(parentEdge.from);
+        revealedNodes.add(parentEdge.to);
+        current = parentEdge.from;
+      }
+      if (rootId) revealedNodes.add(rootId);
+    };
+
+    stepNodes.forEach((id) => {
+      revealedNodes.add(id);
+      includePathTo(id);
+    });
+    stepEdges.forEach((id) => {
+      revealedEdges.add(id);
+      const edge = edgeMap.get(id);
+      if (edge) {
+        includePathTo(edge.from);
+        includePathTo(edge.to);
+      }
+    });
+    syntheticEdges.forEach((edge) => {
+      if (revealedNodes.has(edge.from) || revealedNodes.has(edge.to)) {
+        revealedEdges.add(edge.id);
+      }
+    });
+    dimAll();
+    clearDim(revealedNodes, revealedEdges);
+    [...stepNodes].forEach((id) => {
       const nodes = document.querySelectorAll(`[data-node-id="${id}"]`);
       nodes.forEach((node) => {
         node.classList.add("node--revealed");
@@ -480,7 +813,7 @@ function setupReplay(replay) {
       const label = document.querySelectorAll(`text[data-node-id="${id}"]`);
       label.forEach((l) => l.classList.add("node-label--revealed"));
     });
-    step.edges?.forEach((edgeId) => {
+    stepEdges.forEach((edgeId) => {
       const edge = document.querySelector(`[data-edge-id="${edgeId}"]`);
       if (edge) {
         edge.classList.add("edge--revealed");
@@ -493,149 +826,77 @@ function setupReplay(replay) {
     if (status) status.textContent = `${stepIndex + 1}/${steps.length} • ${step.event || "step"}`;
   };
 
-  const play = () => {
+  const resetReplayVisuals = () => {
+    document.querySelectorAll(".node--past").forEach((n) => n.classList.remove("node--past"));
+    document.querySelectorAll(".edge--past").forEach((e) => e.classList.remove("edge--past"));
+    document.querySelectorAll("[data-node-id]").forEach((n) => n.classList.remove("node--revealed"));
+    document.querySelectorAll("[data-edge-id]").forEach((e) => e.classList.remove("edge--revealed"));
+    document.querySelectorAll(".node-label").forEach((l) => l.classList.remove("node-label--revealed"));
+    revealedNodes.clear();
+    revealedEdges.clear();
+  };
+
+  const clearTimer = () => {
+    if (!timer) return;
+    clearTimeout(timer);
+    timer = null;
+  };
+
+  const tick = () => {
     const steps = getSteps();
-    if (timer) return;
+    if (!steps.length) return;
     if (idx >= steps.length) idx = 0;
-    if (status) status.textContent = "playing…";
+    if (status) status.textContent = "auto replay";
     if (canvas) canvas.classList.add("replay");
     if (idx === 0) {
-      document.querySelectorAll(".node--past").forEach((n) => n.classList.remove("node--past"));
-      document.querySelectorAll(".edge--past").forEach((e) => e.classList.remove("edge--past"));
-      document.querySelectorAll("[data-node-id]").forEach((n) => n.classList.remove("node--revealed"));
-      document.querySelectorAll("[data-edge-id]").forEach((e) => e.classList.remove("edge--revealed"));
-      document.querySelectorAll(".node-label").forEach((l) => l.classList.remove("node-label--revealed"));
+      resetReplayVisuals();
     }
     applyStep(idx);
     idx += 1;
-    timer = setInterval(() => {
-      applyStep(idx);
-      idx += 1;
-      if (idx >= steps.length) {
-        clearInterval(timer);
+    if (idx >= steps.length) {
+      revealAll();
+      if (status) status.textContent = "looping…";
+      idx = 0;
+      timer = setTimeout(() => {
         timer = null;
-        revealAll();
-        if (status) status.textContent = "completed";
-      }
+        tick();
+      }, 1100);
+      return;
+    }
+    timer = setTimeout(() => {
+      timer = null;
+      tick();
     }, 900);
   };
 
-  const pause = () => {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-      if (status) status.textContent = "paused";
-    }
+  const startLoop = () => {
+    if (timer) return;
+    tick();
+  };
+
+  const restartLoop = () => {
+    clearTimer();
+    idx = 0;
+    resetReplayVisuals();
+    dimAll();
+    applyStep(0);
+    idx = 1;
+    startLoop();
   };
 
   renderSteps();
-  applyStep(0);
-  if (status) status.textContent = "ready";
-  revealAll();
+  if (status) status.textContent = "auto replay";
+  dimAll();
   currentScenarioId = scenarios[0]?.id || "default";
   renderScenarioChips();
   renderSwitches();
+  startLoop();
 
-  scenarioRun?.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (!activeScenarioId) {
-      idx = 0;
-      play();
-      return;
-    }
-    if (status) status.textContent = "running…";
-    const apiBase = window.location.hostname.includes("hiwidigi.com")
-      ? "https://api.hiwidigi.com"
-      : "http://localhost:5174";
-    fetch(`${apiBase}/run-intent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ scenarioId: activeScenarioId }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        idx = 0;
-        if (typeof bootstrap === "function") {
-          bootstrap();
-        }
-      })
-      .catch(() => {
-        idx = 0;
-        play();
-      });
-  });
-
-  playBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    play();
-  });
-  pauseBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    pause();
-  });
-}
-
-function enablePanZoom(svg) {
-  let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-  let viewBox = svg.viewBox.baseVal;
-
-  const onDown = (evt) => {
-    isDragging = true;
-    svg.style.cursor = "grabbing";
-    startX = evt.clientX;
-    startY = evt.clientY;
+  window.__hiwiReplayCleanup = () => {
+    clearTimer();
+    if (autoRunTimer) clearTimeout(autoRunTimer);
+    cleanupFns.forEach((fn) => fn());
   };
-
-  const onMove = (evt) => {
-    if (!isDragging) return;
-    const dx = (evt.clientX - startX) * 1.2;
-    const dy = (evt.clientY - startY) * 1.2;
-    viewBox.x -= dx;
-    viewBox.y -= dy;
-    startX = evt.clientX;
-    startY = evt.clientY;
-  };
-
-  const onUp = () => {
-    isDragging = false;
-    svg.style.cursor = "grab";
-  };
-
-  svg.addEventListener("mousedown", onDown);
-  window.addEventListener("mousemove", onMove);
-  window.addEventListener("mouseup", onUp);
-
-  svg.addEventListener("wheel", (evt) => {
-    evt.preventDefault();
-    const scale = evt.deltaY > 0 ? 1.1 : 0.9;
-    viewBox.width *= scale;
-    viewBox.height *= scale;
-  });
-}
-
-function enableTooltip(svg) {
-  const tooltip = document.getElementById("graphTooltip");
-  if (!tooltip) return;
-
-  svg.addEventListener("mousemove", (evt) => {
-    const target = evt.target;
-    if (!(target instanceof SVGElement)) return;
-    const info = target.getAttribute("data-node-info");
-    if (!info) {
-      tooltip.classList.remove("graph__tooltip--show");
-      return;
-    }
-    tooltip.textContent = info;
-    tooltip.style.left = `${evt.offsetX + 16}px`;
-    tooltip.style.top = `${evt.offsetY + 16}px`;
-    tooltip.classList.add("graph__tooltip--show");
-  });
-
-  svg.addEventListener("mouseleave", () => {
-    tooltip.classList.remove("graph__tooltip--show");
-  });
 }
 
 function renderDetails(detail) {
@@ -701,26 +962,39 @@ function renderDetails(detail) {
   if (decisionTarget) {
     const traces = detail.decisionTrace || [];
     decisionTarget.innerHTML = traces
-      .map(
-        (trace) => `
-        <div class="decision__block">
-          <strong>${trace.label}</strong>
-          <div class="detail__meta">Context: ${JSON.stringify(trace.context.core || {})}</div>
-          ${trace.evaluations
-            .map(
-              (ev) => `
-              <div class="decision__row">
-                <span>${ev.capabilityId}</span> →
-                ${ev.results
-                  .map((r) => `${r.predicate.key} ${r.predicate.op} ${JSON.stringify(r.predicate.value)} = ${r.result}`)
-                  .join(", ")}
-              </div>
-            `
-            )
-            .join("")}
-        </div>
-      `
-      )
+      .map((trace) => {
+        const context = trace.context?.core || {};
+        const evaluations = trace.evaluations || [];
+        return `
+          <details class="decision__block" open>
+            <summary>
+              <span class="decision__title">${trace.label}</span>
+              <span class="decision__meta">${Object.keys(context).length ? "context attached" : "context empty"}</span>
+              <span class="decision__hint">expand</span>
+            </summary>
+            <pre class="decision__context">${JSON.stringify(context, null, 2)}</pre>
+            <div class="decision__rows">
+              ${evaluations
+                .map(
+                  (ev) => `
+                  <div class="decision__row">
+                    <div class="decision__cap">${ev.capabilityId}</div>
+                    <div class="decision__rules">
+                      ${(ev.results || [])
+                        .map(
+                          (r) =>
+                            `${r.predicate.key} ${r.predicate.op} ${JSON.stringify(r.predicate.value)} → ${r.result}`
+                        )
+                        .join(" · ")}
+                    </div>
+                  </div>
+                `
+                )
+                .join("")}
+            </div>
+          </details>
+        `;
+      })
       .join("");
   }
 }
@@ -742,25 +1016,50 @@ function renderEventLog(eventLog) {
     }));
   }
 
-  all = all.slice(0, 40);
+  all = all.slice(0, 60);
 
   target.innerHTML = "";
   all.forEach((entry, idx) => {
-    const item = document.createElement("div");
+    const item = document.createElement("details");
+    const eventType = entry?.event?.type || "event";
     const success =
-      entry?.event?.type?.includes("success") ||
-      entry?.event?.type?.includes("created") ||
-      entry?.event?.type?.includes("added");
-    item.className = `eventlog__item ${success ? "eventlog__item--success" : "eventlog__item--fail"}`;
-    item.style.animationDelay = `${idx * 80}ms`;
-    item.textContent = `${entry.timestamp} • ${entry.event.type}`;
+      eventType.includes("success") ||
+      eventType.includes("created") ||
+      eventType.includes("added");
+    const failed =
+      eventType.includes("fail") ||
+      eventType.includes("error") ||
+      eventType.includes("rollback");
+    item.className = `eventlog__item ${success ? "eventlog__item--success" : failed ? "eventlog__item--fail" : ""}`;
+    item.style.animationDelay = `${idx * 40}ms`;
+    const summary = document.createElement("summary");
+    const time = document.createElement("span");
+    time.className = "eventlog__time";
+    time.textContent = entry.timestamp;
+    const type = document.createElement("span");
+    type.className = "eventlog__type";
+    type.textContent = eventType;
+    const cta = document.createElement("span");
+    cta.className = "eventlog__cta";
+    cta.textContent = "expand";
+    summary.appendChild(time);
+    summary.appendChild(type);
+    summary.appendChild(cta);
+    const pre = document.createElement("pre");
+    pre.className = "eventlog__payload";
+    pre.textContent = JSON.stringify(entry, null, 2);
+    item.appendChild(summary);
+    item.appendChild(pre);
     target.appendChild(item);
   });
 }
 
 function initMiniDemos() {
-  const experience = document.getElementById("experience");
-  if (!experience) return;
+  const journeySections = [
+    document.getElementById("experience"),
+    document.getElementById("experience-clarity"),
+  ].filter(Boolean);
+  if (journeySections.length === 0) return;
 
   let freedomTimer = null;
   let traceTimer = null;
@@ -771,9 +1070,9 @@ function initMiniDemos() {
   const pathEl = document.getElementById("miniFreedomPath");
 
   const freedomOptions = [
-    { id: "us", result: "Stripe · FedEx · Firestore", path: ["payment", "logistics", "datastore"], scenarioId: "us-default" },
-    { id: "id", result: "Xendit · J&T · Firestore", path: ["payment", "logistics", "datastore"], scenarioId: "id-default" },
-    { id: "de", result: "Adyen · DHL · Postgres", path: ["payment", "logistics", "datastore"], scenarioId: "de-default" },
+    { id: "us", result: "Stripe · FedEx · Firestore", path: ["payment", "logistics", "datastore"], scenarioId: "provider-stripe-firestore" },
+    { id: "id", result: "Xendit · Local · Firestore", path: ["payment", "logistics", "datastore"], scenarioId: "provider-wallet-firestore" },
+    { id: "de", result: "Stripe · DHL · Postgres", path: ["payment", "logistics", "datastore"], scenarioId: "provider-stripe-postgres" },
   ];
 
   let freedomIndex = 0;
@@ -798,21 +1097,13 @@ function initMiniDemos() {
   const runMiniScenario = (option) => {
     if (!option?.scenarioId) return;
     if (metaEl) metaEl.textContent = "Running…";
-    const apiBase = window.location.hostname.includes("hiwidigi.com")
-      ? "https://api.hiwidigi.com"
-      : "http://localhost:5174";
-    fetch(`${apiBase}/run-intent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ scenarioId: option.scenarioId }),
-    })
-      .then((res) => res.json())
+    postScenarioRun(option.scenarioId)
       .then((payload) => {
         const selection = payload?.selection || payload?.result?.selection || payload?.data?.selection;
         if (selection && resultEl) {
-          const payment = selection.payment?.provider || selection.payment || "payment";
-          const logistics = selection.logistics?.provider || selection.logistics || "logistics";
-          const datastore = selection.datastore?.provider || selection.datastore || "datastore";
+          const payment = selection.payment?.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) || selection.payment || "payment";
+          const logistics = selection.logistics?.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) || selection.logistics || "logistics";
+          const datastore = selection.datastore?.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) || selection.datastore || "datastore";
           resultEl.textContent = `${payment} · ${logistics} · ${datastore}`;
         }
         if (metaEl) metaEl.textContent = "Last run: just now";
@@ -917,36 +1208,171 @@ function initMiniDemos() {
   };
 
   const startAll = () => {
-    experience.classList.add("is-live");
+    journeySections.forEach((section) => section.classList.add("is-live"));
     startFreedom();
     startTrace();
     startGraph();
   };
 
   const stopAll = () => {
-    experience.classList.remove("is-live");
+    journeySections.forEach((section) => section.classList.remove("is-live"));
     stopFreedom();
     stopTrace();
     stopGraph();
   };
 
+  const visible = new Set();
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) startAll();
-        else stopAll();
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
       });
+      if (visible.size > 0) startAll();
+      else stopAll();
     },
     { threshold: 0.35 }
   );
 
-  observer.observe(experience);
+  journeySections.forEach((section) => observer.observe(section));
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     stopAll();
-    experience.classList.add("is-live");
+    journeySections.forEach((section) => section.classList.add("is-live"));
     setFreedom(freedomOptions[0].id);
     applyTrace();
     applyGraph();
   }
+}
+
+function initChapters() {
+  const chapters = Array.from(document.querySelectorAll("[data-chapter]"));
+  if (chapters.length === 0) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    chapters.forEach((section) => section.classList.add("is-live"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-live", entry.isIntersecting);
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  chapters.forEach((section) => observer.observe(section));
+}
+
+function initEcsVisual() {
+  const visual = document.getElementById("ecsVisual");
+  if (!visual) return;
+
+  const order = ["compliance", "payment", "risk"];
+  let idx = 0;
+
+  const setFocus = (target) => {
+    visual.querySelectorAll("[data-component]").forEach((el) => {
+      el.classList.toggle("is-focus", el.getAttribute("data-component") === target);
+    });
+    visual.querySelectorAll("[data-flow]").forEach((el) => {
+      el.classList.toggle("is-focus", el.getAttribute("data-flow") === target);
+    });
+  };
+
+  setFocus(order[idx]);
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  window.setInterval(() => {
+    idx = (idx + 1) % order.length;
+    setFocus(order[idx]);
+  }, 1700);
+}
+
+function initSignalCounters() {
+  const values = Array.from(document.querySelectorAll(".signal-card__value[data-count]"));
+  if (values.length === 0) return;
+
+  const animateValue = (el) => {
+    const target = Number(el.getAttribute("data-count"));
+    if (!Number.isFinite(target)) return;
+    const suffix = el.getAttribute("data-suffix") || "";
+    const duration = 1200;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const value = Math.round(target * eased);
+      el.textContent = `${value}${suffix}`;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    values.forEach((el) => {
+      const target = el.getAttribute("data-count");
+      const suffix = el.getAttribute("data-suffix") || "";
+      el.textContent = `${target}${suffix}`;
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateValue(entry.target);
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.55 }
+  );
+
+  values.forEach((el) => observer.observe(el));
+}
+
+function initPinSections() {
+  const sections = Array.from(document.querySelectorAll(".pin-section"));
+  if (sections.length === 0) return;
+
+  const setup = () => {
+    sections.forEach((section) => {
+      let shell = section.querySelector(":scope > .pin-shell");
+      if (!shell) {
+        shell = document.createElement("div");
+        shell.className = "pin-shell";
+        while (section.firstChild) {
+          shell.appendChild(section.firstChild);
+        }
+        section.appendChild(shell);
+      }
+
+      section.classList.remove("pin-tall");
+
+      const isNarrow = window.matchMedia("(max-width: 960px)").matches;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (isNarrow || reduceMotion) {
+        section.classList.add("pin-tall");
+        return;
+      }
+
+      const maxPinnedHeight = window.innerHeight * 0.86;
+      const contentHeight = shell.scrollHeight;
+      if (contentHeight > maxPinnedHeight) {
+        section.classList.add("pin-tall");
+      }
+    });
+  };
+
+  setup();
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(setup, 120);
+  });
 }

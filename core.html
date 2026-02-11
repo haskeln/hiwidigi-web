@@ -3,208 +3,421 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hiwi Core — Deterministic intent orchestration</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=22" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Hiwi Core - Deterministic Workflow Orchestration</title>
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=55" />
   </head>
   <body class="apple">
     <main class="page">
       <nav class="nav">
-        <div class="nav__brand">Hiwi</div>
+        <a class="nav__brand" href="./index.html">Hiwi</a>
         <div class="nav__links">
-          <a href="./index.html">Overview</a>
-          <a href="#core">Hiwi Core</a>
-          <a href="./huxen.html">Hiwi HUXEN</a>
-          <a href="./himl.html" class="nav__soon">HIML <span>Coming soon</span></a>
-          <a href="#demo">Live Demo</a>
-          <a href="#waitlist" class="nav__cta">Join waitlist</a>
+          <a href="./core.html">Hiwi Core</a>
+          <a href="./huxen.html">HUXEN</a>
+          <a href="./himl.html">HIML</a>
+          <a href="./core.html#api">API</a>
+          <a href="./core.html#demo">Live Demo</a>
+          <a href="./index.html#waitlist" class="nav__cta">Join waitlist</a>
         </div>
       </nav>
 
-      <header class="hero hero--apple" id="core">
+      <header class="hero hero--apple pin-section" id="core">
         <div class="hero__tag">Hiwi Core</div>
-        <h1>Make complex workflows feel effortless.</h1>
+        <h1>One Intent. Context-Aware Execution. Deterministic Outcomes.</h1>
         <p class="hero__lead">
-          One intent that adapts everywhere — country, policy, vendor — without rewriting your system.
+          SaaS teams lose shipping speed to brittle integrations and edge-case branching. Hiwi Core uses
+          ECS-based orchestration to resolve one intent into the right workflow for each context,
+          with auditable decisions and provider flexibility built in.
         </p>
+        <div class="hero__status" id="statusBadge">loading...</div>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#waitlist">Join the waitlist</a>
-          <a class="btn btn--ghost" href="#demo">Try the live demo</a>
+          <a class="btn btn--primary" href="#demo">Run Live Demo</a>
+          <a class="btn btn--ghost" href="#proof">See Proof</a>
         </div>
       </header>
 
-      <section class="section duo" id="huxen">
-        <div class="duo__copy">
-          <span class="duo__tag">Hiwi HUXEN</span>
-          <h2>Design the experience once. Ship it everywhere.</h2>
-          <p>
-            HUXEN is Hiwi’s interface engine — a calm layer that turns intent into UI journeys, so teams can
-            ship clarity without rebuilding every screen.
-          </p>
-          <div class="duo__chips">
-            <span>Adaptive UI</span>
-            <span>Unified design rules</span>
-            <span>Human‑first flows</span>
+      <section class="section chapter chapter--problem pin-section" id="problem" data-chapter>
+        <div class="chapter__inner">
+          <div class="chapter__copy">
+            <div class="cinema-tag">Reality</div>
+            <h2 class="section__title">You ship. <span>Then the system</span> slows you down.</h2>
+            <p class="section__lead">More markets, more providers, more brittle branches. It is exhausting, and it is not your fault.</p>
+            <p class="empathy-quote">You are not behind. Your architecture is carrying too much weight.</p>
           </div>
-        </div>
-        <div class="duo__visual">
-          <div class="duo__glass">
-            <div class="duo__pulse"></div>
-            <div class="duo__line"></div>
-            <div class="duo__line"></div>
-            <div class="duo__line"></div>
+          <div class="chapter__visual">
+            <div class="file-contrast" aria-label="Without Hiwi versus with Hiwi">
+              <div class="file-contrast__col file-contrast__col--without">
+                <h4>without hiwi</h4>
+                <div class="file-stack">
+                  <span>checkout_us_policy.ts</span>
+                  <span>checkout_id_policy.ts</span>
+                  <span>checkout_de_policy.ts</span>
+                  <span>stripe_risk_rules.ts</span>
+                  <span>xendit_risk_rules.ts</span>
+                  <span>vat_compliance_map.ts</span>
+                  <span>ppn_compliance_map.ts</span>
+                </div>
+              </div>
+              <div class="file-contrast__col file-contrast__col--with">
+                <h4>with hiwi</h4>
+                <div class="file-single">intent.checkout.himl</div>
+                <div class="file-tags">
+                  <span>context</span>
+                  <span>policy</span>
+                  <span>capability graph</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section feature" id="experience">
-        <article class="feature-panel" data-magic="freedom">
-          <div class="feature-panel__copy">
-            <h2>Freedom to change</h2>
-            <p>Switch regions or vendors and the system adapts instantly — no rewrites, no re‑architecture.</p>
+      <section class="section chapter chapter--evidence pin-section" id="evidence" data-chapter>
+        <div class="chapter__inner chapter__inner--single">
+          <div class="empathy-signal">
+            <div class="cinema-tag cinema-tag--blue">Evidence</div>
+            <div class="empathy-signal__intro">
+              <h3>We know this is not \"just engineering inefficiency.\"</h3>
+              <p>It is real team stress. Real launch delays. Real rework fatigue.</p>
+            </div>
+            <div class="signal-grid">
+              <article class="signal-card">
+                <div class="signal-card__value" data-count="95" data-suffix="%">95%</div>
+                <p>of IT leaders report integration challenges.</p>
+                <a href="https://www.salesforce.com/news/stories/connectivity-report-announcement-2025/" target="_blank" rel="noreferrer">Salesforce / MuleSoft 2025</a>
+              </article>
+              <article class="signal-card">
+                <div class="signal-card__value" data-count="29" data-suffix="%">29%</div>
+                <p>average share of enterprise apps integrated.</p>
+                <a href="https://www.salesforce.com/news/stories/connectivity-report-announcement-2025/" target="_blank" rel="noreferrer">Salesforce / MuleSoft 2025</a>
+              </article>
+              <article class="signal-card">
+                <div class="signal-card__value" data-count="69" data-suffix="%">69%</div>
+                <p>of developers spend 10+ hours weekly on APIs.</p>
+                <a href="https://www.postman.com/state-of-api/" target="_blank" rel="noreferrer">Postman State of API 2025</a>
+              </article>
+            </div>
           </div>
-          <div class="feature-panel__demo">
-            <div class="mini-switch" id="miniSwitchFreedom">
-              <button class="mini-pill" data-option="us">USA</button>
-              <button class="mini-pill" data-option="id">Indonesia</button>
-              <button class="mini-pill" data-option="de">Germany</button>
-            </div>
-            <div class="mini-result" id="miniFreedomResult">
-              Stripe · FedEx · Firestore
-            </div>
-            <div class="mini-path" id="miniFreedomPath">
-              <span>payment</span>
-              <span>logistics</span>
-              <span>datastore</span>
-            </div>
-            <div class="mini-meta" id="miniFreedomMeta">Last run: ready</div>
-          </div>
-        </article>
+        </div>
+      </section>
 
-        <article class="feature-panel" data-magic="clarity">
-          <div class="feature-panel__copy">
-            <h2>Clarity by default</h2>
-            <p>Every decision is traceable, so teams trust what runs.</p>
+      <section class="section chapter chapter--moat pin-section" id="moat" data-chapter>
+        <div class="chapter__inner">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--mint">Strength</div>
+            <h2 class="section__title">Calm on the surface. Hard moat underneath.</h2>
+            <p class="section__lead">ECS modeling, deterministic routing, and capability graph compounding make Hiwi stronger over time.</p>
           </div>
-          <div class="feature-panel__demo">
-            <div class="mini-trace" id="miniTrace">
-              <div class="trace-line">Intent received</div>
-              <div class="trace-line">Policy check</div>
-              <div class="trace-line">Capabilities selected</div>
-              <div class="trace-line">Execution complete</div>
-            </div>
-            <div class="mini-meta">Every step is recorded and replayable.</div>
-          </div>
-        </article>
+          <div class="chapter__visual">
+            <svg class="ecs-visual" viewBox="0 0 520 360" role="img" aria-label="ECS and shared component visualization" id="ecsVisual">
+              <path class="ecs-edge" d="M 85 76 C 170 76, 210 70, 300 70" />
+              <path class="ecs-edge" d="M 85 76 C 170 76, 210 160, 300 160" />
+              <path class="ecs-edge" d="M 85 168 C 170 168, 210 70, 300 70" />
+              <path class="ecs-edge" d="M 85 168 C 170 168, 210 248, 300 248" />
+              <path class="ecs-edge" d="M 85 258 C 170 258, 210 160, 300 160" />
+              <path class="ecs-edge" d="M 85 258 C 170 258, 210 248, 300 248" />
+              <path class="ecs-edge ecs-edge--relation" d="M 112 102 C 128 130, 128 142, 112 170" />
+              <path class="ecs-edge ecs-edge--relation" d="M 112 194 C 128 220, 128 232, 112 260" />
+              <path class="ecs-flow ecs-flow--compliance" data-flow="compliance" d="M 85 76 C 170 76, 210 70, 300 70" />
+              <path class="ecs-flow ecs-flow--compliance" data-flow="compliance" d="M 85 168 C 170 168, 210 70, 300 70" />
+              <path class="ecs-flow ecs-flow--payment" data-flow="payment" d="M 85 76 C 170 76, 210 160, 300 160" />
+              <path class="ecs-flow ecs-flow--payment" data-flow="payment" d="M 85 258 C 170 258, 210 160, 300 160" />
+              <path class="ecs-flow ecs-flow--risk" data-flow="risk" d="M 85 168 C 170 168, 210 248, 300 248" />
+              <path class="ecs-flow ecs-flow--risk" data-flow="risk" d="M 85 258 C 170 258, 210 248, 300 248" />
 
-        <article class="feature-panel" data-magic="realities">
-          <div class="feature-panel__copy">
-            <h2>One intent, many realities</h2>
-            <p>The same intent resolves different paths, deterministically.</p>
-          </div>
-          <div class="feature-panel__demo">
-            <svg class="mini-graph" id="miniGraph" viewBox="0 0 420 180" role="img" aria-label="Mini intent graph">
-              <path class="mini-edge" d="M 40 90 C 120 90, 140 40, 220 40" />
-              <path class="mini-edge" d="M 40 90 C 120 90, 140 140, 220 140" />
-              <path class="mini-edge" d="M 220 40 C 280 40, 300 90, 380 90" />
-              <path class="mini-edge" d="M 220 140 C 280 140, 300 90, 380 90" />
+              <rect class="ecs-node ecs-node--entity" x="34" y="54" width="102" height="42" rx="18" />
+              <rect class="ecs-node ecs-node--entity" x="34" y="146" width="102" height="42" rx="18" />
+              <rect class="ecs-node ecs-node--entity" x="34" y="236" width="102" height="42" rx="18" />
+              <text class="ecs-label" x="58" y="80">Order</text>
+              <text class="ecs-label" x="46" y="172">Customer</text>
+              <text class="ecs-label" x="54" y="262">Market</text>
 
-              <rect class="mini-node" x="20" y="72" width="80" height="36" rx="18" data-node="intent" />
-              <rect class="mini-node" x="190" y="22" width="90" height="36" rx="18" data-node="pay" />
-              <rect class="mini-node" x="190" y="122" width="90" height="36" rx="18" data-node="notify" />
-              <rect class="mini-node" x="350" y="72" width="70" height="36" rx="18" data-node="done" />
-              <text class="mini-label" x="30" y="96" data-node="intent">intent</text>
-              <text class="mini-label" x="206" y="46" data-node="pay">payment</text>
-              <text class="mini-label" x="202" y="146" data-node="notify">notify</text>
-              <text class="mini-label" x="364" y="96" data-node="done">done</text>
+              <rect class="ecs-node ecs-node--component" data-component="compliance" x="276" y="48" width="170" height="42" rx="18" />
+              <rect class="ecs-node ecs-node--component" data-component="payment" x="276" y="138" width="170" height="42" rx="18" />
+              <rect class="ecs-node ecs-node--component" data-component="risk" x="276" y="228" width="170" height="42" rx="18" />
+              <text class="ecs-label ecs-label--component" data-component="compliance" x="296" y="74">CompliancePolicy</text>
+              <text class="ecs-label ecs-label--component" data-component="payment" x="296" y="164">PaymentCapability</text>
+              <text class="ecs-label ecs-label--component" data-component="risk" x="296" y="254">RiskProfile</text>
+
+              <text class="ecs-caption" x="42" y="322">Entities connect to shared components and keep relational meaning.</text>
             </svg>
-            <div class="mini-meta">Deterministic graph = predictable outcomes.</div>
           </div>
-        </article>
-      </section>
-
-      <section class="section highlight" id="demo">
-        <div class="highlight__copy">
-          <h2>See the magic, live</h2>
-          <p>
-            Choose a context, press run, and watch the system resolve the best path in real time.
-          </p>
         </div>
-        <details class="demo__drawer" open>
-          <summary>Open live demo</summary>
-          <section class="card scenario">
-            <h2>Scenario Switches</h2>
-            <div class="scenario__label">Context + compliance</div>
-            <div class="scenario__row" id="scenarioContexts"></div>
-            <div class="scenario__label">Provider swaps (payments + datastore)</div>
-            <div class="scenario__row" id="scenarioProviders"></div>
-            <div class="scenario__output" id="scenarioOutput">Select a scenario to preview decisions.</div>
-            <div class="scenario__actions">
-              <button class="btn btn--primary" id="scenarioRun">Run Intent</button>
-            </div>
-          </section>
-
-          <section class="card graph">
-            <div class="graph__header">
-              <h2>Intent → Capability Graph</h2>
-              <p>Auto-built from the latest run records.</p>
-            </div>
-            <div class="graph__controls">
-              <button class="btn btn--primary" id="replayPlay">Play Replay</button>
-              <button class="btn btn--ghost" id="replayPause">Pause</button>
-              <div class="graph__status" id="replayStatus">ready</div>
-            </div>
-            <div class="graph__scenarios" id="replayScenarios"></div>
-            <div class="graph__canvas">
-              <svg id="flowGraph" viewBox="0 0 980 680" role="img" aria-label="Flow graph"></svg>
-              <div class="graph__tooltip" id="graphTooltip"></div>
-            </div>
-            <div class="graph__steps" id="replaySteps"></div>
-          </section>
-
-          <section class="card detail">
-            <div class="detail__header">
-              <h2>Audit + Trace</h2>
-              <p>Every decision is captured and exportable for BI and process mining.</p>
-            </div>
-            <div class="detail__grid">
-              <div class="detail__col">
-                <h3>Recipes</h3>
-                <div id="recipeBlock"></div>
-              </div>
-              <div class="detail__col">
-                <h3>Policies</h3>
-                <div id="policyBlock"></div>
-              </div>
-              <div class="detail__col">
-                <h3>Capabilities</h3>
-                <div id="capabilityList"></div>
-              </div>
-            </div>
-            <div class="detail__trace">
-              <h3>Decision trace</h3>
-              <div id="decisionTrace"></div>
-            </div>
-          </section>
-
-          <section class="card eventlog">
-            <div class="eventlog__header">
-              <h2>Events Fired (Live)</h2>
-              <p>Export the event stream for BI, process mining, or audit review.</p>
-            </div>
-            <div class="eventlog__actions">
-              <a class="btn btn--ghost" href="./hiwi_event_log.json" download>Export JSON</a>
-              <a class="btn btn--ghost" href="./hiwi_event_log.csv" download>Export CSV</a>
-              <a class="btn btn--primary" href="./hiwi_event_log.xes" download>Export Process Mine (XES)</a>
-            </div>
-            <div class="eventlog__stream" id="eventLogStream"></div>
-          </section>
-        </details>
       </section>
 
-      <section class="section waitlist" id="waitlist">
+      <section class="section chapter chapter--impact pin-section" id="proof" data-chapter>
+        <div class="chapter__inner">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--blue">Impact</div>
+            <h2 class="section__title">Same intent. Different week.</h2>
+            <p class="section__lead">Without Hiwi: rewrites and fire drills. With Hiwi: controlled changes and clear decisions.</p>
+            <div class="impact-split">
+              <article class="impact-split__col impact-split__col--without">
+                <h3>Without Hiwi</h3>
+                <ul>
+                  <li>Provider switch = rewrite</li>
+                  <li>New market = new branch debt</li>
+                  <li>Incident = manual reconstruction</li>
+                </ul>
+              </article>
+              <article class="impact-split__col impact-split__col--with">
+                <h3>With Hiwi</h3>
+                <ul>
+                  <li>Switch constraints, not core logic</li>
+                  <li>Reuse intent across contexts</li>
+                  <li>Replay trace in minutes</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+          <div class="chapter__visual chapter__visual--metrics">
+            <div class="proof__grid">
+              <article class="proof__card proof__card--metric">
+                <h3>Normal Context Reliability</h3>
+                <p data-kpi="normalSuccess">-</p>
+              </article>
+              <article class="proof__card proof__card--metric">
+                <h3>Strict Context Reliability</h3>
+                <p data-kpi="strictSuccess">-</p>
+              </article>
+              <article class="proof__card proof__card--metric">
+                <h3>Recent Run Reliability</h3>
+                <p data-kpi="runReliability">-</p>
+              </article>
+              <article class="proof__card proof__card--metric">
+                <h3>Provider Adaptability</h3>
+                <p data-kpi="providerFlex">-</p>
+              </article>
+            </div>
+            <div class="card compare">
+              <div class="compare__title">Why these KPIs matter</div>
+              <div class="compare__row">
+                <span>Provider switch impact</span>
+                <strong id="kpiNoteA">Measured via scenario swaps + trace output</strong>
+              </div>
+              <div class="compare__row">
+                <span>Incident triage readiness</span>
+                <strong id="kpiNoteB">Measured via replay + decision trace completeness</strong>
+              </div>
+              <div class="compare__row">
+                <span>Cross-context consistency</span>
+                <strong id="kpiNoteC">Measured across deterministic multi-context runs</strong>
+              </div>
+              <div class="compare__contexts">
+                <div id="contextA">Normal context example -</div>
+                <div id="contextB">Strict context example -</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section launch-api" id="api">
+        <div class="launch-api__copy">
+          <h2>API Quickstart</h2>
+          <p>Use one endpoint to resolve an intent deterministically by context and policy.</p>
+        </div>
+        <pre class="launch-code"><code>curl -X POST https://api.hiwidigi.com/run-intent \
+  -H "Content-Type: application/json" \
+  -d '{ "scenarioId": "provider-stripe-firestore" }'
+
+# Example response
+{
+  "selection": {
+    "payment": "stripe_payment",
+    "logistics": "fedex_logistics",
+    "datastore": "firestore_datastore"
+  }
+}</code></pre>
+        <div class="launch-api__actions">
+          <a class="btn btn--primary" href="#demo">Open live demo console</a>
+          <a class="btn btn--ghost" href="#demo-trace">See audit trace output</a>
+        </div>
+      </section>
+
+      <section class="section chapter chapter--strength-a pin-section journey-link" id="experience" data-chapter>
+        <div class="chapter__inner">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--mint">Strength Journey</div>
+            <h2 class="section__title">Freedom to change, without rewriting your core.</h2>
+            <p class="section__lead">Same intent. New context. The system adapts while your product logic stays clean.</p>
+          </div>
+          <div class="chapter__visual">
+            <div class="strength-mix">
+              <div class="mini-switch" id="miniSwitchFreedom">
+                <button class="mini-pill" data-option="us">USA</button>
+                <button class="mini-pill" data-option="id">Indonesia</button>
+                <button class="mini-pill" data-option="de">Germany</button>
+              </div>
+              <div class="mini-result" id="miniFreedomResult">Stripe · FedEx · Firestore</div>
+              <div class="mini-path" id="miniFreedomPath">
+                <span>payment</span>
+                <span>logistics</span>
+                <span>datastore</span>
+              </div>
+              <svg class="mini-graph" id="miniGraph" viewBox="0 0 420 180" role="img" aria-label="Mini intent graph">
+                <path class="mini-edge" d="M 40 90 C 120 90, 140 40, 220 40" />
+                <path class="mini-edge" d="M 40 90 C 120 90, 140 140, 220 140" />
+                <path class="mini-edge" d="M 220 40 C 280 40, 300 90, 380 90" />
+                <path class="mini-edge" d="M 220 140 C 280 140, 300 90, 380 90" />
+
+                <rect class="mini-node" x="20" y="72" width="80" height="36" rx="18" data-node="intent" />
+                <rect class="mini-node" x="190" y="22" width="90" height="36" rx="18" data-node="pay" />
+                <rect class="mini-node" x="190" y="122" width="90" height="36" rx="18" data-node="notify" />
+                <rect class="mini-node" x="350" y="72" width="70" height="36" rx="18" data-node="done" />
+                <text class="mini-label" x="30" y="96" data-node="intent">intent</text>
+                <text class="mini-label" x="206" y="46" data-node="pay">payment</text>
+                <text class="mini-label" x="202" y="146" data-node="notify">notify</text>
+                <text class="mini-label" x="364" y="96" data-node="done">done</text>
+              </svg>
+              <div class="mini-meta" id="miniFreedomMeta">Last run: ready</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chapter chapter--strength-b pin-section" id="experience-clarity" data-chapter>
+        <div class="chapter__inner">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--mint">Strength Journey</div>
+            <h2 class="section__title">Clarity by default, even under pressure.</h2>
+            <p class="section__lead">Every decision has a trace. Every path is replayable. Incidents stop being guesswork.</p>
+          </div>
+          <div class="chapter__visual">
+            <div class="strength-mix strength-mix--trace">
+              <div class="mini-trace" id="miniTrace">
+                <div class="trace-line">Intent received</div>
+                <div class="trace-line">Policy check</div>
+                <div class="trace-line">Capabilities selected</div>
+                <div class="trace-line">Execution complete</div>
+              </div>
+              <div class="mini-meta">Trace is continuously recorded and replayable.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chapter chapter--demo chapter--demo-control pin-section" id="demo" data-chapter>
+        <div class="chapter__inner">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--blue">Live Demo</div>
+            <h2 class="section__title">Switch context. Feel the system adapt.</h2>
+            <p class="section__lead">No play buttons, no friction. The journey loops automatically so people can watch outcomes change without touching controls.</p>
+          </div>
+          <div class="chapter__visual chapter__visual--demo">
+            <div class="demo-stack">
+              <section class="card scenario">
+                <h3>Scenario switches</h3>
+                <div class="scenario__label">Context + compliance</div>
+                <div class="scenario__row" id="scenarioContexts"></div>
+                <div class="scenario__label">Provider swaps (payments + datastore)</div>
+                <div class="scenario__row" id="scenarioProviders"></div>
+                <div class="scenario__output" id="scenarioOutput">Select a scenario to preview decisions.</div>
+                <div class="scenario__actions">
+                  <span class="scenario__hint">Intent runs automatically on selection.</span>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chapter chapter--demo chapter--demo-graph pin-section" id="demo-graph" data-chapter>
+        <div class="chapter__inner chapter__inner--single">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--mint">Live Graph</div>
+            <h2 class="section__title">Intent to capability map, always in motion.</h2>
+            <p class="section__lead">Replay loops continuously so reviewers can watch deterministic routing and variation across scenarios at a glance.</p>
+          </div>
+          <div class="chapter__visual chapter__visual--graph">
+            <section class="card graph">
+              <div class="graph__header">
+                <h3>Intent -> Capability Graph</h3>
+                <p>Auto-built from replay data and live runs.</p>
+              </div>
+              <div class="graph__controls">
+                <div class="graph__status" id="replayStatus">auto replay active</div>
+              </div>
+              <div class="graph__scenarios" id="replayScenarios"></div>
+              <div class="graph__canvas">
+                <svg id="flowGraph" viewBox="0 0 980 680" role="img" aria-label="Flow graph"></svg>
+              </div>
+              <div class="graph__steps" id="replaySteps"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chapter chapter--demo chapter--demo-trace pin-section" id="demo-trace" data-chapter>
+        <div class="chapter__inner chapter__inner--single">
+          <div class="chapter__copy">
+            <div class="cinema-tag">Audit Story</div>
+            <h2 class="section__title">When incidents happen, you already have the truth.</h2>
+            <p class="section__lead">Decision trace, policy outcomes, and selected capabilities are pre-organized for rapid review.</p>
+          </div>
+          <div class="chapter__visual chapter__visual--demo">
+            <section class="card detail">
+              <div class="detail__header">
+                <h3>Audit + Trace</h3>
+                <p>Every decision is captured and exportable for BI and process mining.</p>
+              </div>
+              <div class="detail__grid">
+                <div class="detail__col">
+                  <h4>Recipes</h4>
+                  <div id="recipeBlock"></div>
+                </div>
+                <div class="detail__col">
+                  <h4>Policies</h4>
+                  <div id="policyBlock"></div>
+                </div>
+                <div class="detail__col">
+                  <h4>Capabilities</h4>
+                  <div id="capabilityList"></div>
+                </div>
+              </div>
+              <div class="detail__trace">
+                <h4>Decision trace</h4>
+                <div id="decisionTrace"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chapter chapter--demo chapter--demo-events pin-section" id="demo-events" data-chapter>
+        <div class="chapter__inner chapter__inner--single">
+          <div class="chapter__copy">
+            <div class="cinema-tag cinema-tag--blue">Event Stream</div>
+            <h2 class="section__title">Live operational pulse, ready to export.</h2>
+            <p class="section__lead">The stream scrolls itself so reviewers can watch the system heartbeat and open details only when needed.</p>
+          </div>
+          <div class="chapter__visual chapter__visual--demo">
+            <section class="card eventlog">
+              <div class="eventlog__header">
+                <h3>Events Fired (Live)</h3>
+                <p>Export the event stream for BI, process mining, or audit review.</p>
+              </div>
+              <section class="card timeline timeline--embedded">
+                <h3>Recent deterministic runs</h3>
+                <div id="timeline"></div>
+              </section>
+              <div class="eventlog__actions">
+                <a class="btn btn--ghost" href="./hiwi_event_log.json" download>Export JSON</a>
+                <a class="btn btn--ghost" href="./hiwi_event_log.csv" download>Export CSV</a>
+                <a class="btn btn--primary" href="./hiwi_event_log.xes" download>Export Process Mine (XES)</a>
+              </div>
+              <div class="eventlog__stream" id="eventLogStream"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="section waitlist pin-section" id="waitlist">
         <div class="waitlist__copy">
-          <h2>Want early access?</h2>
-          <p>Join the waitlist and we’ll reach out for early pilots.</p>
+          <h2>Looking for early design partners</h2>
+          <p>Founders and product teams shipping multi-region SaaS workflows can join our pilot batch.</p>
         </div>
         <div class="waitlist__form">
           <a class="btn btn--primary" href="https://forms.gle/8jUyykeKEeq7VK9Z8" target="_blank" rel="noreferrer">Join waitlist</a>
@@ -217,6 +430,8 @@
       </footer>
     </main>
 
-    <script src="./hiwi-moat-demo.js?v=22"></script>
+    <script src="https://unpkg.com/elkjs/lib/elk.bundled.js"></script>
+    <script src="./hiwi-nav.js?v=4"></script>
+    <script src="./hiwi-moat-demo.js?v=51"></script>
   </body>
 </html>

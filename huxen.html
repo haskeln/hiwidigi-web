@@ -3,18 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Hiwi HUXEN — Interface engine</title>
-    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=22" />
+    <link rel="stylesheet" href="./hiwi-moat-demo.css?v=55" />
   </head>
   <body class="apple">
     <main class="page">
       <nav class="nav">
-        <div class="nav__brand">Hiwi</div>
+        <a class="nav__brand" href="./index.html">Hiwi</a>
         <div class="nav__links">
-          <a href="./index.html">Overview</a>
           <a href="./core.html">Hiwi Core</a>
-          <a href="./huxen.html">Hiwi HUXEN</a>
-          <a href="./himl.html" class="nav__soon">HIML <span>Coming soon</span></a>
+          <a href="./huxen.html">HUXEN</a>
+          <a href="./himl.html">HIML</a>
+          <a href="./core.html#api">API</a>
           <a href="./core.html#demo">Live Demo</a>
           <a href="./index.html#waitlist" class="nav__cta">Join waitlist</a>
         </div>
@@ -33,11 +36,11 @@
         </div>
       </header>
 
-      <section class="section feature">
-        <article class="feature-panel">
+      <section class="section feature feature--peek" id="experience">
+        <article class="feature-panel feature-panel--peek">
           <div class="feature-panel__copy">
-            <h2>Adaptive by default</h2>
-            <p>Design once and let intent adapt the experience to region, policy, or vendor.</p>
+            <h2>Adaptive UI</h2>
+            <p>Intent drives layout and flow so interfaces adapt without manual rewrites.</p>
           </div>
           <div class="feature-panel__demo">
             <div class="mini-result">Intent-driven UI paths</div>
@@ -48,10 +51,24 @@
             </div>
           </div>
         </article>
-        <article class="feature-panel">
+        <article class="feature-panel feature-panel--peek">
           <div class="feature-panel__copy">
-            <h2>Human-first clarity</h2>
-            <p>HUXEN translates system intent into experiences people instantly understand.</p>
+            <h2>Unified design rules</h2>
+            <p>Design once, enforce everywhere. Teams ship consistently across regions and products.</p>
+          </div>
+          <div class="feature-panel__demo">
+            <div class="mini-result">One design system</div>
+            <div class="mini-path">
+              <span>tokens</span>
+              <span>rules</span>
+              <span>flows</span>
+            </div>
+          </div>
+        </article>
+        <article class="feature-panel feature-panel--peek">
+          <div class="feature-panel__copy">
+            <h2>Human-first journeys</h2>
+            <p>HUXEN keeps experiences calm and clear, even when the system underneath changes.</p>
           </div>
           <div class="feature-panel__demo">
             <div class="mini-result">Calm + confident flows</div>
@@ -62,12 +79,20 @@
             </div>
           </div>
         </article>
+        <div class="peek-overlay">
+          <div class="peek-overlay__card">
+            <div class="peek-overlay__badge">Private Beta Preview</div>
+            <h2>HUXEN walkthrough is locked.</h2>
+            <p>Join the waitlist to unlock the full interface engine preview and design-partner access.</p>
+            <a class="btn btn--primary" href="./index.html#waitlist">Request Early Access</a>
+          </div>
+        </div>
       </section>
 
       <section class="section waitlist" id="waitlist">
         <div>
-          <h2>HUXEN is coming soon</h2>
-          <p>Be the first to access Hiwi HUXEN.</p>
+          <h2>Get the full HUXEN reveal</h2>
+          <p>Join the early design-partner list and get unblurred access to the private walkthrough.</p>
         </div>
         <a class="btn btn--primary" href="https://forms.gle/8jUyykeKEeq7VK9Z8" target="_blank" rel="noreferrer">Join waitlist</a>
       </section>
@@ -77,5 +102,6 @@
         <span>Hiwi HUXEN</span>
       </footer>
     </main>
+    <script src="./hiwi-nav.js?v=4"></script>
   </body>
 </html>
